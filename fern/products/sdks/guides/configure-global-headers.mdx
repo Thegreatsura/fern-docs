@@ -77,8 +77,11 @@ If you'd like to see this feature, please upvote [this issue](https://github.com
 </Accordion>
 <Accordion title="OpenAPI">
 
-Use the `x-fern-global-headers` extension to label additional headers as global
-or to alias the names of global headers:
+For OpenAPI specifications, you can configure global headers in two ways:
+
+#### Method 1: OpenAPI Spec Extension
+
+Add global headers directly to your OpenAPI spec using the `x-fern-global-headers` extension to label additional headers as global or to alias the names of global headers:
 
 ```yaml title="openapi.yml"
 x-fern-global-headers:
@@ -88,14 +91,37 @@ x-fern-global-headers:
     optional: true
 ```
 
-This configuration yields the following client:
+#### Method 2: `generators.yml` Configuration
+
+Alternatively, you can add headers to the `api` block in your `generators.yml` file:
+
+```yaml title="generators.yml"
+api:
+  - openapi: ./path/to/openapi
+    headers: 
+      custom_api_key:
+        name: api_key
+        type: string
+      userpool_id:
+        name: userpool_id
+        type: optional<string>
+```
+
+For more information, see the [`generators.yml` reference documentation](/sdks/reference/generators-yml#headers).
+
+#### Client code
+
+Both of the above configurations produce the same client code:
 
 ```python
 import os
 
 class Client:
 
-  def __init__(self, *, apiKey: str, userpoolId: typing.Optional[str])
+  def __init__(self, *, apiKey: str, 
+               userpoolId: typing.Optional[str])
 ```
+
+
 </Accordion>
 </AccordionGroup>
