@@ -180,10 +180,10 @@ navigation:
         path: ./pages/api-references/autopopulate-api-key.mdx
       - page: SSO
         path: ./pages/authentication/sso.mdx
-  - section: Enterprise
-    collapsed: true
-    contents:
-      - page: Self-hosted
+  -  section: Self-Hosted
+     collapsed: true
+     contents:
+      - page: Overview
         path: ./pages/enterprise/self-hosted.mdx
   - section: Integrations
     collapsed: true
