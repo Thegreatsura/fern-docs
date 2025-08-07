@@ -279,3 +279,150 @@ interface Person {
 }
 ```
 </CodeBlock>
+
+### Validating types
+
+You can add validation constraints to your types (both aliases and references) to ensure data integrity. Validation constracts are automatically enforced in generated SDKs.
+
+<CodeBlock title="Fern Definition">
+```yaml {8-11, 15-17}
+types:
+  Person:
+    docs: A person represents a human being
+    properties:
+      name:
+        docs: The person's full name
+        type: string
+        validation:
+          minLength: 2
+          maxLength: 100
+          pattern: "^[A-Za-z ]+$"
+      age:
+        docs: Age in years
+        type: integer
+        validation:
+          min: 0
+          max: 150
+```
+</CodeBlock>
+<CodeBlock title="Generated TypeScript SDK from Fern Definition">
+
+```typescript
+interface Person {
+  /** The person's full name */
+  name: string;
+  /** Age in years */
+  age: number;
+}
+
+// Validation is automatically enforced when creating Person objects
+const client = new YourApiClient();
+try {
+  const person = await client.createPerson({
+    name: "A",           // Fails minLength validation
+    age: -5,             // Fails min validation
+  });
+} catch (error) {
+  if (error instanceof ValidationError) {
+    console.log(`Validation failed: ${error.message}`);
+  }
+}
+```
+</CodeBlock>
+
+<AccordionGroup>
+<Accordion title="String validation reference">
+
+String types support several validation constraints.
+
+```yaml {4-6, 11-13, 16-19}
+types:
+  Word:
+    type: string
+    validation:
+      minLength: 2
+      maxLength: 26
+  User:
+    properties:
+      email:
+        type: string
+        validation:
+          format: email
+          maxLength: 254
+      username:
+        type: string
+        validation:
+          minLength: 3
+          maxLength: 20
+          pattern: "^[a-zA-Z0-9_]+$"
+```
+
+<ParamField path="minLength" type="integer">
+  Minimum number of characters required
+</ParamField>
+
+<ParamField path="maxLength" type="integer">
+  Maximum number of characters allowed
+</ParamField>
+
+<ParamField path="pattern" type="string">
+  Regular expression pattern that the string must match
+</ParamField>
+
+<ParamField path="format" type="string">
+  String format specification (e.g., "email", "uri", "date-time")
+</ParamField>
+
+</Accordion>
+
+<Accordion title="Number validation reference">
+
+Number types (including `integer`, `long`, and `double`) support several validation constraints.
+
+```yaml {4-6, 12-15, 18-20}
+types:
+  Age:
+    type: integer
+    validation:
+      min: 0
+      max: 150
+  Product:
+    properties:
+      name: string
+      price:
+        type: double
+        validation:
+          min: 0
+          exclusiveMin: true
+          multipleOf: 0.01
+      quantity:
+        type: integer
+        validation:
+          min: 1
+          max: 1000
+```
+
+<ParamField path="min" type="number">
+  Minimum value (inclusive by default)
+</ParamField>
+
+<ParamField path="max" type="number">
+  Maximum value (inclusive by default)
+</ParamField>
+
+<ParamField path="exclusiveMin" type="boolean">
+  When true, the minimum value is exclusive (value must be greater than min)
+</ParamField>
+
+<ParamField path="exclusiveMax" type="boolean">
+  When true, the maximum value is exclusive (value must be less than max)
+</ParamField>
+
+<ParamField path="multipleOf" type="number">
+  Value must be a multiple of this number
+</ParamField>
+
+</Accordion>
+</AccordionGroup>
+
+
