@@ -13,7 +13,75 @@ Adding Custom Components is available on the Pro plan.
 
 You can add custom CSS to your docs to further customize the look and feel. The defined class names are applied across all MDX files.
 
-Here's an example of what you can do with custom CSS:
+<Steps>
+### Create `styles.css`
+
+Add a `styles.css` file and include it in your `fern/` project:
+
+<CodeBlock title="Add the styles.css file">
+```bash {5}
+  fern/
+  ├─ openapi/
+  ├─ pages/
+  ├─ images/
+  ├─ styles.css
+  ├─ docs.yml
+  └─ fern.config.json
+```
+</CodeBlock>
+
+### Edit `docs.yml`
+
+In `docs.yml`, specify the path to the `styles.css` file:
+
+<CodeBlock title="docs.yml">
+```yaml
+css: ./styles.css
+```
+</CodeBlock>
+
+### Add multiple custom CSS files (optional)
+
+You can specify any number of custom CSS files:
+
+<CodeBlock title="docs.yml">
+```yaml
+css:
+  - ./css/header-styles.css
+  - ./css/footer-styles.css
+```
+</CodeBlock>
+
+</Steps>
+
+<Note>
+For customizing the background, logo, font, and layout of your Docs via Fern's built-in styling, 
+check out the [Global Configuration](/learn/docs/getting-started/global-configuration). 
+</Note>
+
+### Common use cases
+
+<AccordionGroup>
+<Accordion title="Hiding page elements">
+
+You can use custom CSS to hide specific Fern docs components that you don't want
+to display.
+
+<CodeBlock title="styles.css">
+    ```css
+    .fern-page-actions {
+      display: none !important;
+    }
+    ```
+</CodeBlock>
+
+Commonly hidden components include `.fern-page-actions` (**Open in
+ChatGPT**, **Open in Claude**, and **Copy Page** buttons) and `.fern-layout-footer-toolbar`
+(Fern feedback widget). You can target other Fern UI components using their CSS class names. Use your browser's developer tools to inspect elements and find their class names. 
+</Accordion>
+<Accordion title="Adding custom styling">
+
+You can use custom CSS to create brand-specific styling for tables, components, and other elements in your documentation.
 
 <CodeBlock title="styles.css">
 ```css maxLines=10
@@ -71,52 +139,8 @@ Here's an example of what you can do with custom CSS:
 }
 ```
 </CodeBlock>
-
-<Steps>
-### Create `styles.css`
-
-Add a `styles.css` file and include it in your `fern/` project:
-
-<CodeBlock title="Add the styles.css file">
-```bash {5}
-  fern/
-  ├─ openapi/
-  ├─ pages/
-  ├─ images/
-  ├─ styles.css
-  ├─ docs.yml
-  └─ fern.config.json
-```
-</CodeBlock>
-
-### Edit `docs.yml`
-
-In `docs.yml`, specify the path to the `styles.css` file:
-
-<CodeBlock title="docs.yml">
-```yaml
-css: ./styles.css
-```
-</CodeBlock>
-
-### Add multiple custom CSS files (optional)
-
-You can specify any number of custom CSS files:
-
-<CodeBlock title="docs.yml">
-```yaml
-css:
-  - ./css/header-styles.css
-  - ./css/footer-styles.css
-```
-</CodeBlock>
-
-</Steps>
-
-<Note>
-For customizing the background, logo, font, and layout of your Docs via Fern's built-in styling, 
-check out the [Global Configuration](/learn/docs/getting-started/global-configuration). 
-</Note>
+</Accordion>
+</AccordionGroup>
 
 ## Custom JavaScript
 
