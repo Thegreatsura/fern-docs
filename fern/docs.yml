@@ -57,31 +57,31 @@ products:
     slug: api-definitions
 
   - display-name: OpenAPI
-    path: ./products/api-def/api-def.yml
+    path: ./products/api-def/openapi-def.yml
     icon: fa-regular fa-book
     image: ./images/product-switcher/openapi-definition-light.png
     slug: openapi-definition
   
   - display-name: AsyncAPI
-    path: ./products/api-def/api-def.yml
+    path: ./products/api-def/asyncapi-def.yml
     icon: fa-regular fa-bolt
     image: ./images/product-switcher/asyncapi-light.png
     slug: asyncapi-definition
 
   - display-name: OpenRPC
-    path: ./products/api-def/api-def.yml
+    path: ./products/api-def/openrpc-def.yml
     icon: fa-regular fa-code
     image: ./images/product-switcher/openrpc-light.png
     slug: openrpc-definition
   
   - display-name: gRPC
-    path: ./products/api-def/api-def.yml
+    path: ./products/api-def/grpc-def.yml
     icon: fa-regular fa-plug
     image: ./images/product-switcher/grpc-light.png
     slug: grpc-definition
 
   - display-name: Fern Definition
-    path: ./products/api-def/api-def.yml
+    path: ./products/api-def/ferndef-def.yml
     icon: fa-regular fa-seedling
     image: ./images/product-switcher/fern-definition-light.png
     slug: fern-definition
@@ -411,6 +411,9 @@ redirects:
   - source: /learn/docs/content/visual-editor
     destination: /learn/docs/writing-content/visual-editor
     permanent: true
+  - source: /learn/docs/writing-content/code-blocks
+    destination: /learn/docs/writing-content/components/code-blocks
+    permanent: true
 
   - source: /learn/docs/getting-started/changelog/:slug*
     destination: /learn/docs/changelog/:slug*
@@ -476,43 +479,40 @@ redirects:
   # API DEFINITION REDIRECTS
   # ============================================================================
   
-  # API Definition OpenAPI specific redirects first
+  # # API Definition OpenAPI specific redirects first
   - source: /learn/api-definition/openapi/endpoints/:slug*
-    destination: /learn/openapi-definition/endpoints/:slug*
+    destination: /learn/api-definitions/openapi/endpoints/:slug*
     permanent: true
   - source: /learn/api-definition/openapi/extensions/:slug*
-    destination: /learn/openapi-definition/extensions/:slug*
+    destination: /learn/api-definitions/openapi/extensions/:slug*
     permanent: true
   - source: /learn/api-definition/openapi/frameworks/:slug*
-    destination: /learn/openapi-definition/frameworks/:slug*
+    destination: /learn/api-definitions/openapi/frameworks/:slug*
     permanent: true
   - source: /learn/api-definition/openapi/:slug*
-    destination: /learn/openapi-definition/:slug*
+    destination: /learn/api-definitions/openapi/:slug*
     permanent: true
   - source: /learn/openapi-definition/extensions/webhooks
-    destination: /learn/openapi-definition/endpoints/webhooks
+    destination: /learn/api-definitions/openapi/endpoints/webhooks
     permanent: true
 
   # API Definition Fern specific redirects first
   - source: /learn/api-definition/fern/endpoints/:slug*
-    destination: /learn/fern-definition/endpoints/:slug*
+    destination: /learn/api-definitions/ferndef/endpoints/:slug*
     permanent: true
   - source: /learn/api-definition/fern/api-yml/:slug*
-    destination: /learn/fern-definition/api-yml/:slug*
+    destination: /learn/api-definitions/ferndef/api-yml/:slug*
     permanent: true
   - source: /learn/api-definition/fern/:slug* 
-    destination: /learn/fern-definition/:slug*
+    destination: /learn/api-definitions/ferndef/:slug*
     permanent: true
 
-  # API Definition Introduction redirects
+  # # API Definition Introduction redirects
   - source: /learn/api-definition/introduction/what-is-an-api-definition
-    destination: /learn/openapi-definition/overview
+    destination: /learn/api-definitions/overview/what-is-an-api-definition
     permanent: true
   - source: /learn/api-definition/introduction/what-is-the-fern-folder
-    destination: /learn/sdks/overview/quickstart
-    permanent: true
-  - source: /learn/api-definition/introduction/:slug*
-    destination: /learn/openapi-definition/overview
+    destination: /learn/api-definitions/overview/project-structure
     permanent: true
 
   # ============================================================================
@@ -573,6 +573,21 @@ redirects:
   # ============================================================================
   # API REFERENCE REDIRECTS
   # ============================================================================
+  - source: /learn/openapi-definition/empty-page
+    destination: /learn/api-definitions/openapi/overview
+    permanent: true
+  - source: /learn/asyncapi-definition/empty-page
+    destination: /learn/api-definitions/asyncapi/overview
+    permanent: true
+  - source: /learn/openrpc-definition/empty-page
+    destination: /learn/api-definitions/openrpc/overview
+    permanent: true
+  - source: /learn/grpc-definition/empty-page
+    destination: /learn/api-definitions/grpc/overview
+    permanent: true
+  - source: /learn/fern-definition/empty-page
+    destination: /learn/api-definitions/ferndef/overview
+    permanent: true
   - source: /learn/openapi-definition/:slug*
     destination: /learn/api-definitions/openapi/:slug*
     permanent: true
