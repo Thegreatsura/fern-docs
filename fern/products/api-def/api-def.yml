@@ -5,6 +5,8 @@ navigation:
         path: ./pages/what-is-an-api-definition.mdx       
       - page: Project structure
         path: ./pages/project-structure.mdx
+      - page: Overrides
+        path: ./pages/overrides.mdx
   - section: OpenAPI
     collapsed: true
     slug: openapi
@@ -15,8 +17,6 @@ navigation:
         path: ./openapi-pages/auth.mdx
       - page: Servers
         path: ./openapi-pages/servers.mdx   
-      - page: Automation
-        path: ./openapi-pages/automation.mdx  
         slug: sync-your-open-api-specification        
       - section: Endpoints
         slug: endpoints
@@ -63,7 +63,12 @@ navigation:
           - page: Schema names
             path: ./openapi-pages/extensions/schema-names.mdx
           - page: Server names
-            path: ./openapi-pages/extensions/server-names.mdx         
+            path: ./openapi-pages/extensions/server-names.mdx
+      - section: Workflow & automation
+        skip-slug: true
+        contents:
+          - page: Sync your OpenAPI specification
+            path: ./openapi-pages/automation.mdx                 
       - section: Integrate your server framework
         slug: frameworks
         contents:
@@ -123,8 +128,6 @@ navigation:
       - section: Workflow & automation
         skip-slug: true
         contents:
-          - page: Overlay customizations
-            path: ./asyncapi-pages/overrides.mdx
           - page: Sync your AsyncAPI specification
             path: ./asyncapi-pages/automation.mdx  
   - section: OpenRPC
@@ -186,8 +189,6 @@ navigation:
       - section: Workflow & automation
         skip-slug: true
         contents:
-          - page: Overlay customizations
-            path: ./openrpc-pages/overrides.mdx
           - page: Sync your OpenRPC specification
             path: ./openrpc-pages/automation.mdx    
   - section: gRPC
@@ -253,8 +254,6 @@ navigation:
       - section: Workflow & automation
         skip-slug: true
         contents:
-          - page: Overlay customizations
-            path: ./grpc-pages/overrides.mdx
           - page: Sync your gRPC specification
             path: ./grpc-pages/automation.mdx
   - section: Fern Definition

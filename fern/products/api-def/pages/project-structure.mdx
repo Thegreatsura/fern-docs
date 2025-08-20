@@ -18,6 +18,10 @@ fern/
     └─ spec-file.yml # API definition file
 ```
 
+<Note> 
+  Beyond the core files, you can optionally use an overrides file to customize your API definition without modifying the original spec. See [Overrides](/api-definitions/overview/overrides) for instructions.
+</Note>
+
 ### `fern.config.json file`
 
 Every fern folder has a single `fern.config.json` file. This file stores the organization and
@@ -38,8 +42,9 @@ determinism.
 The `generators.yml` file includes information about where your API definition file is located. It also [configures the SDKs](/sdks/overview/github) you're generating for your API. 
 
 ```yaml title="generators.yml"
-api: 
-  path: ./path/to/openapi.yml
+api:
+  specs:
+    - openapi: spec-file.yml 
 ```
 
 ### API definition file
@@ -48,6 +53,12 @@ api:
 
   For the other specification formats ([OpenAPI](/api-definitions/openapi/overview), [AsyncAPI](/api-definitions/asyncapi/overview), [OpenRPC](/api-definitions/openrpc/overview), and [gRPC](/api-definitions/grpc/overview)), you'll have a single self-contained specification file. 
 
+
 ## Multiple API definitions
 
 <Markdown src="/snippets/multiple-apis.mdx" />
+
+### Docs configuration
+
+APIs in docs are specified by [setting the `api-name` property](/docs/api-references/generate-api-ref#include-more-than-one-api-reference).
+
