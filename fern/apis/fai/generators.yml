@@ -1,6 +1,6 @@
 api:
   specs:
-    - openapi: ./openapi.json
+    - openapi: ./openapi/openapi.json
 default-group: local
 
 groups:
