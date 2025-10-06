@@ -96,6 +96,30 @@ To reference an endpoint, you can use either:
 
 ## Customizing the API Reference
 
+### Renaming sections
+
+By default, section display names come from [service file names](/api-definition/fern/endpoints#service-definition) (Fern
+Definition) or tag names (OpenAPI) in your spec.
+
+To override the display name of a section, use the `section` property in your `docs.yml` and reference the `lowerCamelCase` version of the original service file name (Fern Definition) or tag name (OpenAPI) in `referenced-packages`.
+
+```yaml title="docs.yml" {4-6}
+navigation: 
+  - api: API Reference
+    layout:
+      - section: "Billing" # New section display name
+        referenced-packages: 
+          - billing # lowerCamelCase version of original tag/service file name from your spec
+        contents: []
+      - section: "Bank Accounts"
+        referenced-packages: 
+          - bankAccounts
+        contents: []
+```
+<Note>
+  For OpenAPI, you can alternatively customize tag display names directly in your spec (or `overrides.yml` file) using the [`x-displayName` extension](/api-definitions/openapi/extensions/tag-display-names). 
+</Note>
+
 ### Flattening sections
 To remove the API Reference title and display the section contents, set `flattened` to `true`.
 
