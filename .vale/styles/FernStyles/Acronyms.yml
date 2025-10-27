@@ -65,6 +65,10 @@ exceptions:
   - XSS
   - YAML
   - ZIP
+  - SEO
+  - TLS
+  - BCL 
+  - LLM 
   - MDX
   - SEO 
   - AWS 
