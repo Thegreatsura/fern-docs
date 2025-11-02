@@ -242,10 +242,23 @@ navbar-links:
     rounded: false
   - type: github
     value: https://github.com/example-company/fern
+  - type: dropdown
+    text: Resources
+    icon: fa-solid fa-book
+    links:
+      - text: Documentation
+        href: https://example.com/docs
+        icon: fa-regular fa-file-lines
+      - text: API Reference
+        href: https://example.com/api
+        icon: fa-regular fa-code
+      - text: Tutorials
+        href: https://example.com/tutorials
+        icon: fa-regular fa-graduation-cap
 ```
 
 <ParamField path="type" type="enum" required={false} toc={true}>
-  One of `outlined`, `minimal`, `filled`, or `github`. This value controls the styling of the button. 
+  One of `outlined`, `minimal`, `filled`, `github`, or `dropdown`. This value controls the styling of the button. 
 </ParamField>
 
 <ParamField path="href" type="string" required={false} toc={true}>
@@ -272,6 +285,30 @@ navbar-links:
   The [Font Awesome icon](https://fontawesome.com/icons) to be used in the button. This icon will appear to the **right** of the text content. Pro and Brand Icons from Font Awesome are supported.
 
   By default, the `rightIcon` for a `filled` button is set to `arrow-right`.
+</ParamField>
+
+<ParamField path="links" type="list of objects" required={false} toc={true}>
+  Items to display in the dropdown menu when `type` is set to `dropdown`.
+</ParamField>
+
+<ParamField path="links.text" type="string" required={false} toc={true}>
+  The text to display for the link.
+</ParamField>
+
+<ParamField path="links.href" type="string" required={false} toc={true}>
+  The URL the link points to.
+</ParamField>
+
+<ParamField path="links.icon" type="string" required={false} toc={true}>
+  [Font Awesome icon](https://fontawesome.com/icons) that displays to the left of the text.
+</ParamField>
+
+<ParamField path="links.rightIcon" type="string" required={false} toc={true}>
+  [Font Awesome icon](https://fontawesome.com/icons) that displays to the right of the text
+</ParamField>
+
+<ParamField path="links.rounded" type="boolean" required={false} default="false" toc={true}>
+  When `true`, the link will have fully rounded borders.
 </ParamField>
 
 ## Footer links configuration
