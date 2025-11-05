@@ -162,6 +162,13 @@ navigation:
         path: ./pages/customization/user-feedback.mdx
       - page: Custom CSS & JS
         path: ./pages/component-library/custom-components/custom-css-js.mdx
+  - section: Accessibility
+    collapsed: true
+    contents:
+      - page: Overview
+        path: ./pages/accessibility/overview.mdx
+      - page: Keyboard shortcuts
+        path: ./pages/accessibility/keyboard-shortcuts.mdx
   - section: API references
     collapsed: true
     contents:
