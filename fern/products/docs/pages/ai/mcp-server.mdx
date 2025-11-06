@@ -43,3 +43,16 @@ To connect to your MCP server:
 4. Start asking questions about your product directly in the AI client    
 </Accordion>
 </AccordionGroup>
+
+## Direct API access for AI agents
+
+AI agents can access your documentation, including authenticated documentation, directly via HTTP. Fern serves content as clean Markdown for token efficiency.
+
+For authenticated sites, agents obtain a JWT via [`/api/fern-docs/get-jwt`](/learn/docs/ai-features/mcp-server/api-reference/get-jwt) with a Fern API key to access the protected documentation content and search functionality.
+
+```bash Access protected content
+curl https://docs.example.com/platform/overview \
+  -H 'Accept: text/plain' \
+  -H 'x-fern-host: docs.example.com' \
+  -H 'FERN_TOKEN: your-jwt-here'
+``` 
