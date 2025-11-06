@@ -292,4 +292,11 @@ navigation:
         path: ./pages/developer-tools/vale.mdx  
       - page: View Markdown
         path: ./pages/developer-tools/view-markdown.mdx
+  - section: Resources
+    collapsed: true
+    hidden: true
+    contents:
+      - page: Stainless vs. Fern
+        path: ./pages/resources/stainless-comparison.mdx
+        slug: stainless-comparison
   
