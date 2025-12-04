@@ -187,6 +187,24 @@ $$
     \,d\xi
 $$
 
+### Displaying literal dollar signs
+
+Text containing dollar amounts (like prices, budgets, or costs) may unintentionally render as math equations. To display literal dollar signs, escape them with a backslash (`\`):
+
+<div className="highlight-frame">
+  <div className="highlight-frame-content">
+    Without escaping: The product costs $10 and shipping is $5
+
+    With escaping: The product costs \$10 and shipping is \$5
+  </div>
+</div>
+
+
+```markdown Markdown wordWrap
+Without escaping: The product costs $10 and shipping is $5
+With escaping: The product costs \$10 and shipping is \$5
+```
+
 ## Diagrams
 Fern supports creating diagrams within your Markdown using [Mermaid](https://mermaid.js.org/). Mermaid offers a variety of diagrams, including flowcharts, entity-relationship models, and Gantt charts. To include a Mermaid diagram in your Markdown file, create a codeblock marked with `mermaid`.
 
