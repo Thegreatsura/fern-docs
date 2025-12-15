@@ -158,7 +158,9 @@ navigation:
         path: ./pages/ai/overview.mdx
       - page: Fern Writer
         path: ./pages/ai/writer.mdx
-        slug: writer
+      - page: AI-generated examples
+        path: ./pages/ai/ai-examples.mdx
+        slug: ai-examples
       - page: llms.txt
         path: ./pages/ai/llms-txt.mdx
         slug: llms-txt
