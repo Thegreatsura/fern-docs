@@ -736,6 +736,56 @@ page-actions:
   When enabled, displays an "Open in VS Code" button that allows users to open the page content in Visual Studio Code for editing and development.
 </ParamField>
 
+### Custom page actions
+
+Define custom page action buttons with your own titles, icons, and URLs. Custom actions appear alongside the built-in page actions and can link to external tools, editors, or any URL.
+
+```yaml docs.yml
+page-actions:
+  options:
+    custom:
+      - title: Open in Windsurf
+        subtitle: Edit with AI assistance
+        url: "windsurf://open?url={url}"  # Uses {url} placeholder
+        icon: fa-solid fa-wind
+      - title: Report issue
+        subtitle: Found a problem? Let us know
+        url: "https://github.com/your-org/docs/issues/new?title=Issue on {slug}&body=Page: {url}"  # Multiple placeholders
+        icon: fa-brands fa-github
+        default: true  # Sets this custom action as the default
+```
+
+<ParamField path="page-actions.options.custom" type="list of objects" required={false} toc={true}>
+  An array of custom page action configurations. Each custom action appears as a button in the page actions menu.
+</ParamField>
+
+<ParamField path="page-actions.options.custom[].title" type="string" required={true} toc={true}>
+  The title displayed for the custom action button.
+</ParamField>
+
+<ParamField path="page-actions.options.custom[].subtitle" type="string" required={false} toc={true}>
+  Optional helper text displayed below the title in the action menu.
+</ParamField>
+
+<ParamField path="page-actions.options.custom[].url" type="string" required={true} toc={true}>
+  The URL to navigate to when the action is clicked. Supports the following placeholders:
+  - `{slug}`: The current page's slug (e.g., `getting-started/quickstart`)
+  - `{domain}`: The current domain (e.g., `docs.example.com`)
+  - `{url}`: The full URL of the current page (e.g., `https://docs.example.com/getting-started/quickstart`)
+</ParamField>
+
+<ParamField path="page-actions.options.custom[].icon" type="string" required={false} toc={true}>
+  Icon to display for the custom action.
+
+  <Markdown src="/snippets/icons.mdx" />
+</ParamField>
+
+<ParamField path="page-actions.options.custom[].default" type="boolean" required={false} default="false" toc={true}>
+  When set to `true`, this custom action becomes the default action displayed prominently in the page actions area. 
+  
+  If you set `default: true` on a custom action, don't also set [`page-actions.default`](/learn/docs/configuration/site-level-settings#page-actionsdefault) to avoid conflicts.
+</ParamField>
+
 ## GitHub configuration
 
 <Tabs>
