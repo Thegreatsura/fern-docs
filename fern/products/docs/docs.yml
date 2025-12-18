@@ -379,8 +379,6 @@ navigation:
         contents: []
       - sources:
           hidden: true
-      - upstash:
-          hidden: true
       - website:
           hidden: true
     # must be included to use the schema component
