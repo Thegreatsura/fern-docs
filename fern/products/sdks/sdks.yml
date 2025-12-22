@@ -266,3 +266,9 @@ navigation:
       - page: generators.yml
         path: ./reference/generators-yml-reference.mdx
         slug: generators-yml
+  - section: Resources
+    hidden: true
+    contents:
+      - page: Fern vs. OpenAPI Generator
+        path: ./resources/fern-vs-openapi-generator.mdx
+        slug: openapi-generator
