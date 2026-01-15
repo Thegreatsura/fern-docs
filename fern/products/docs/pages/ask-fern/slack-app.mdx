@@ -9,7 +9,7 @@ description: Enable your customers to get instant answers to product questions d
 
 The Ask Fern Slack app allows customers to ask questions about your products directly in Slack channels and receive AI-generated answers from your documentation database.
 
-Fern stores all questions and answers from Slack interactions for [analytics purposes](/ask-fern/features/analytics).
+Fern stores all questions and answers from Slack interactions for [analytics purposes](/learn/docs/ai-features/ask-fern/features#analytics).
 
 ## Setup
 
@@ -22,7 +22,7 @@ Install the Ask Fern app in your workspace and add the bot to customer channels.
 <Steps>
 <Step title="Get your unique install link">
 
-Use the [API Explorer](/ask-fern/api-reference/slack-ask-fern/get-slack-install-link) to get a unique Slack installation link for your organization. Provide:
+Use the [API Explorer](/learn/docs/ai-features/ask-fern/api-reference/slack-ask-fern/get-slack-install-link) to get a unique Slack installation link for your organization. Provide:
 - Your Fern token
 - Your domain without protocol or path (e.g., `website.com`, not `https://website.com/docs`)
 
@@ -40,7 +40,7 @@ Follow the URL returned in the `install_url` response field.
 You'll be redirected to Slack to authorize the Ask Fern app. Select the workspace where you want to add Ask Fern and click **Allow**.
 
 <Frame>
-  <img src="/products/ask-fern/pages/assets/allow-slack.png" alt="Allow Ask Fern for Slack workspace" />
+  <img src="assets/allow-slack.png" alt="Allow Ask Fern for Slack workspace" />
 </Frame>
 
 </Step>
@@ -67,7 +67,7 @@ Use the `/fern` slash command in any channel to adjust the settings:
 | **help** | Get help with Ask Fern slash commands | `/fern help` |
 
 <Frame caption="After configuring respond_to all, bot responds to messages even when not directly mentioned">
-  <img src="/products//ask-fern/pages/assets/respond-all-slack.png" alt="Respond all setting in Slack" />
+  <img src="assets/respond-all-slack.png" alt="Respond all setting in Slack" />
 </Frame>
 
 ### Customize the bot name
@@ -80,7 +80,7 @@ You can rename the bot to match your brand (example: "YourCompanyName Support"):
 4. Enter your preferred bot name and save changes
 
 <Frame>
-  <img src="/products//ask-fern/pages/assets/update-name-slack.png" alt="Update name of Slackbot" />
+  <img src="assets/update-name-slack.png" alt="Update name of Slackbot" />
 </Frame>
 
 Now customers will see `@YourCompanyName Support was added to the channel` instead of the default `@Ask Fern` name.
