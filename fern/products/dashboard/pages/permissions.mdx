@@ -1,42 +1,47 @@
 ---
-title: Member permissions
-description: Manage team member roles and access levels in your organization.
+title: User permissions
+description: Manage Dashboard and CLI access for your organization.
 ---
 
-Use the Fern Dashboard to assign roles to your teammates.
-
-<Info title="Coming soon">
-  Member permissions are in active development. Reach out via Slack or support@buildwithfern.com for more information.
-</Info>
+Control who can publish to production and manage organization settings by assigning roles in the [Fern Dashboard](https://dashboard.buildwithfern.com/). To assign roles, go to **Settings > Members**.
 
 ## Role types
 
-Member roles control what actions someone can take in your organization, such as managing settings, viewing analytics, and publishing to production. [**CLI access**](/learn/cli-api-reference/cli-reference/overview) determines who can publish SDKs and documentation sites to production (local development doesn't require it). 
+When a user logs in to their organization via the Dashboard or CLI, they are assigned an Admin, Editor, or Viewer role. By default, all users have Admin permissions unless a different role has been assigned. 
+
+Roles control two types of permissions:
+
+- **Dashboard permissions**: managing organization settings and members, adding or updating custom domains, and viewing analytics.
+- **CLI permissions**: publishing SDKs and documentation to production. Local development and deploying previews don't require CLI access.
 
 ### Admin
 
-Admins have full administrative access to your Fern organization and full CLI access. They can:
-
-- Manage members, including adding and removing roles.
-- Publish SDKs and documentation sites to production.
+Admins have full access to both the Dashboard and CLI, including editing organization settings, managing members, and publishing to production.
 
 ### Editor
 
-Editors can work with SDKs and documentation, but can't edit Fern organization settings or manage members. CLI access is enabled or disabled per Editor:
+Editors can view analytics but can't manage organization settings or members. CLI access is configurable per Editor:
 
 - Editors **with** CLI access can publish SDKs and documentation sites to production.
 - Editors **without** CLI access can't publish to production.
+- All Editors can deploy previews via the CLI.
 
 ### Viewer
 
-Viewers have read-only access to the Dashboard and analytics. They can't edit organization settings, manage members, or publish to production.
+Viewers have read-only access to the Dashboard (settings, analytics) and can deploy previews via the CLI.
 
 ## Permissions by role
 
 | Permission | Admin | Editor | Viewer |
 |------------|-------|--------|--------|
-| Manage organization settings | ✅ | ❌ | ❌ |
-| Manage members | ✅ | ❌ | ❌ |
-| Publish to production | ✅ | Configure per Editor | ❌ |
-| Generate locally | ✅ | ✅ | ✅ |
-| View dashboard and analytics | ✅ | ✅ | ✅ |
+| Manage organization settings | Yes | No | No |
+| Manage members | Yes | No | No |
+| Add or update a custom domain | Yes | No | No |
+| View dashboard and analytics | Yes | Yes | Yes |
+| Publish to production | Yes | Configure per Editor | No |
+| Deploy previews | Yes | Yes | Yes |
+| Generate locally | Yes | Yes | Yes |
+
+## Per-site permissions
+
+Organizations with multiple docs sites (for example, internal and external documentation) can assign each user a different role per site. A user might be an **Admin** for your internal docs but a **Viewer** for external docs, giving you granular control over who can publish to and manage each site.
