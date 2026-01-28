@@ -927,11 +927,11 @@ Configure experimental features in the `experimental` section of your `docs.yml`
 
 ```yaml docs.yml
 experimental:
-  # Dynamic SDK snippets (disabled by default)
-  dynamic-snippets: true
+  # Dynamic SDK snippets (enabled by default)
+  dynamic-snippets: false  # Set to false to disable
 ```
 
-<ParamField path="experimental.dynamic-snippets" type="boolean" required={false} default="false" toc={true}>
-  Enables dynamic SDK snippets that allow users to modify parameters and see code examples update in real time. When enabled, follow the [SDK snippets setup instructions](/docs/api-references/sdk-snippets) to configure.
+<ParamField path="experimental.dynamic-snippets" type="boolean" required={false} default="true" toc={true}>
+  Controls dynamic SDK snippets that allow users to modify parameters and see code examples update in real time. Dynamic snippets are enabled by default and supported across all languages. Follow the [SDK snippets setup instructions](/docs/api-references/sdk-snippets) to configure. Set to false to use static SDK snippets instead.
 </ParamField>
 
