@@ -12,9 +12,9 @@ Overlays let you customize your OpenAPI specification without modifying the orig
 Overlays follow the [OpenAPI Overlay Specification](https://spec.openapis.org/overlay/v1.0.0.html).
 
 <Note>
-Overlays are the recommended approach for customizing OpenAPI specifications. Compared to [overrides](/api-definitions/overview/overrides), overlays offer additional capabilities like bulk modifications using JSONPath wildcards and the ability to modify elements within arrays. 
+  Fern recommends using [OpenAPI overlays](/api-definitions/openapi/overlays) instead of overrides for OpenAPI specs. Overlays follow the official [OpenAPI Overlay Specification](https://spec.openapis.org/overlay/v1.0.0.html) and are portable across different tools.
 
-Fern still supports overrides for backward compatibility.
+  [Overrides](/api-definitions/overview/overrides) are also fully supported. If your team already uses overrides, there's no need to switch unless you need advanced functionality. You can also use both together (overrides are applied first, then overlays).
 </Note>
 
 ## Configure overlays
