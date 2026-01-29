@@ -36,14 +36,24 @@ subtitle: Build beautiful documentation websites with Fern.
 ---
 ```
 
-The output format differs slightly:
+The output format depends on whether you're requesting an individual page or a section:
+
+**Individual page** — Both `llms.txt` and `llms-full.txt` return the same format:
+
+```txt title=".../page/llms.txt and .../page/llms-full.txt"
+# Fern Docs
+
+> Build beautiful documentation websites with Fern.
+```
+
+**Section** — The two files differ:
 
 <CodeBlocks>
-```txt title="llms.txt"
+```txt title=".../section/llms.txt"
 - [Fern Docs](https://example.com/docs): Build beautiful documentation websites with Fern.
 ```
 
-```txt title="llms-full.txt"
+```txt title=".../section/llms-full.txt"
 # Fern Docs
 
 > Build beautiful documentation websites with Fern.
