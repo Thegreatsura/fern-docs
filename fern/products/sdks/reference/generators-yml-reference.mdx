@@ -346,6 +346,33 @@ default-group: "production"
 <ParamField path="default-group" type="string" required={false} toc={true}>
 </ParamField>
 
+## `autorelease`
+
+Enable or disable [Fern Autorelease](/learn/sdks/overview/autorelease) globally for automated SDK releases. Alternatively, you can [configure autorelease for individual SDKs](#autorelease-2).
+
+```yaml title="generators.yml"
+autorelease: true
+```
+
+<ParamField path="autorelease" type="boolean | object" default={false} required={false} toc={true}>
+  Set to `true` to enable Autorelease, `false` to disable it. Explicit configuration in `generators.yml` takes precedence over other enablement methods. [Per-generator settings](#autorelease-2) override this global configuration.
+</ParamField>
+
+<Accordion title="Enable with pull-based detection">
+
+Configure a cron schedule to periodically fetch and check for spec changes:
+
+```yaml title="generators.yml"
+autorelease:
+  cron:
+    schedule: "0 0 * * 0"  # Weekly on Sunday at midnight
+```
+
+<ParamField path="cron.schedule" type="string" required={true} toc={true}>
+  A cron expression defining how often to check for spec changes. Uses standard cron syntax.
+</ParamField>
+</Accordion>
+
 ## `aliases`
 
 Define shortcuts that map to multiple generator groups, allowing you to run several groups with a single command. When you run `fern generate --group <alias>`, all groups in the alias run in parallel. You can also set an alias as your `default-group`.
@@ -915,6 +942,43 @@ Name of the individual developer, team, or organization that created and maintai
 <ParamField path="license" type="'MIT' | 'Apache-2.0' | 'Custom License Name'" required={false} toc={true}>
 Software license for the generated SDK.
 </ParamField>
+
+#### `autorelease`
+
+Enable or disable [Fern Autorelease](/learn/sdks/overview/autorelease) for an individual SDK. Alternatively, you can [configure autorelease globally for all SDKs](#autorelease-1).
+
+```yml title="generators.yml" {6}
+groups:
+  ts-sdk:
+    generators:
+      - name: fernapi/fern-typescript-sdk
+      ...
+        autorelease: true
+```
+
+<ParamField path="autorelease" type="boolean | object" default={false} required={false} toc={true}>
+  Set to `true` to enable Autorelease for this generator, `false` to disable it. Per-generator settings override the global [`autorelease`](#autorelease-1) configuration.
+</ParamField>
+
+<Accordion title="Enable with pull-based detection">
+
+Configure a cron schedule to periodically fetch and check for spec changes for this generator:
+
+```yml title="generators.yml" {6-8}
+groups:
+  ts-sdk:
+    generators:
+      - name: fernapi/fern-typescript-sdk
+      ...
+        autorelease:
+          cron:
+            schedule: "0 */6 * * *"  # Every 6 hours
+```
+
+<ParamField path="cron.schedule" type="string" required={true} toc={true}>
+  A cron expression defining how often to check for spec changes. Uses standard cron syntax.
+</ParamField>
+</Accordion>
 
 #### `snippets`
 
