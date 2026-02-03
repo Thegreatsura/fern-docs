@@ -51,6 +51,13 @@ fern generate --docs --preview
 └─
 ```
 
+You can also [list all preview deployments](/learn/cli-api-reference/cli-reference/commands#fern-docs-preview-list) for your organization and [delete a preview deployment](/learn/cli-api-reference/cli-reference/commands#fern-docs-preview-delete) when it's no longer needed:
+
+```bash
+fern docs preview list
+fern docs preview delete <url>
+```
+
 ### Automate with GitHub Actions
 
 Generate preview links automatically for every pull request by adding a GitHub Actions workflow. [Add your `FERN_TOKEN` to the repository secrets](/learn/cli-api-reference/cli-reference/commands#fern-token) before using these workflows.

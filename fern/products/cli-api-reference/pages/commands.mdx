@@ -22,6 +22,8 @@ hideOnThisPage: true
 | [`fern docs dev`](#fern-docs-dev) | Run local documentation preview server |
 | [`fern docs diff`](#fern-docs-diff) <Badge intent="warning" minimal>Beta</Badge> | Generate visual diffs between preview and production docs |
 | [`fern generate --docs`](#fern-generate---docs) | Build & publish documentation updates |
+| [`fern docs preview list`](#fern-docs-preview-list) | List all preview deployments |
+| [`fern docs preview delete`](#fern-docs-preview-delete) | Delete a preview deployment |
 
 ## SDK generation commands  
 
@@ -375,6 +377,46 @@ hideOnThisPage: true
     ```bash
     fern generate --docs --preview
     ```
+
+  </Accordion>
+
+  <Accordion title="fern docs preview list">
+
+    Use `fern docs preview list` to list all preview deployments for your organization.
+
+    <CodeBlock title="terminal">
+    ```bash
+    fern docs preview list [--limit <number>] [--page <number>]
+    ```
+    </CodeBlock>
+
+    ### limit
+
+    Use `--limit` to specify the number of preview deployments to display per page.
+
+    ```bash
+    fern docs preview list --limit 20
+    ```
+
+    ### page
+
+    Use `--page` to specify which page of results to display.
+
+    ```bash
+    fern docs preview list --page 2
+    ```
+
+  </Accordion>
+
+  <Accordion title="fern docs preview delete">
+
+    Use `fern docs preview delete` to delete a preview deployment generated with `fern generate --docs --preview`. The `<url>` argument is the full preview URL to delete.
+
+    <CodeBlock title="terminal">
+    ```bash
+    fern docs preview delete <url>
+    ```
+    </CodeBlock>
 
   </Accordion>
 
