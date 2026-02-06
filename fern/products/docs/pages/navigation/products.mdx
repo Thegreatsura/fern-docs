@@ -52,11 +52,14 @@ You can also define external products, which link to external URLs (separate app
   </Folder>
 </Files>
 
-<Note>No separate yml file needed for external products</Note>
+<Tip>
+  To enable YAML validation and autocompletion in your editor, add a schema directive to the top of each `product.yml` file.
+</Tip>
 
 <CodeBlocks>
 <CodeBlock title="products/product-a.yml">
 ```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/product-yml.schema.json
 navigation: 
   - section: Introduction
     contents:
@@ -68,6 +71,7 @@ navigation:
 <CodeBlock title="products/product-b.yml">
 
 ```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/product-yml.schema.json
 tabs: 
   api: 
     title: API Reference
