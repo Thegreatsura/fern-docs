@@ -58,10 +58,8 @@ The `layout` option allows you to specify the order of sub-packages, sections, e
 
 ### Ordering section contents
 
-Adding a `:` after the section name allows you to specify the order of its nested sub-packages and endpoints. 
-
 <Tabs>
-  <Tab title="OpenAPI Specification">
+  <Tab title="OpenAPI">
   You can reference an endpoint using the format `METHOD /path`. 
   ```yaml title="docs.yml"
   navigation: 
@@ -76,13 +74,37 @@ Adding a `:` after the section name allows you to specify the order of its neste
   <Tab title="Fern Definition">
   You can reference an endpoint using the format `serviceName.endpointName`.
   ```yaml title="docs.yml"
-  navigation: 
+  navigation:
     - api: API Reference
-      layout: 
-        - user: 
+      layout:
+        - user:
             - user.create
             - user.update
-            - user.delete        
+            - user.delete
+  ```
+  </Tab>
+  <Tab title="WebSocket">
+  You can reference a WebSocket endpoint using the format `WSS /path/name`.
+  ```yaml title="docs.yml"
+  navigation:
+    - api: API Reference
+      layout:
+        - plants:
+            - GET /plants
+            - WSS /plants/live-updates
+            - WSS /plants/growth-monitor
+  ```
+  </Tab>
+  <Tab title="GraphQL">
+  You can reference an operation using the format `operation: OPERATION_TYPE operationName`. See [GraphQL layout customization](/learn/docs/api-references/generate-graphql-ref#customize-the-layout) for more details.
+  ```yaml title="docs.yml"
+  navigation:
+    - api: API Reference
+      layout:
+        - user:
+            - operation: QUERY getUser
+            - operation: MUTATION createUser
+            - operation: MUTATION deleteUser
   ```
   </Tab>
   <Tab title="WebSocket">
