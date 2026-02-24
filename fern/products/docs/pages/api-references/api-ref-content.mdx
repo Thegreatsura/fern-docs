@@ -54,6 +54,37 @@ service:
 </CodeBlock>
 </CodeBlocks>
 
+## Linking to API endpoints
+
+<Markdown src="/snippets/api-link-syntax.mdx" />
+
+Here's how the `api:` link syntax looks inside API definitions:
+
+<CodeBlocks>
+<CodeBlock title="OpenAPI">
+```yaml
+paths:
+  /orders:
+    post:
+      summary: Create an order
+      description: |
+        Creates a new order. To list all orders,
+        use [List orders](api:GET/v2/orders).
+```
+</CodeBlock>
+<CodeBlock title="Fern Definition">
+```yaml
+service:
+  endpoints:
+    create:
+      path: /orders
+      docs: |
+        Creates a new order. To list all orders,
+        use [List orders](api:GET/v2/orders).
+```
+</CodeBlock>
+</CodeBlocks>
+
 ## Adding a summary page
 
 You can also create a Markdown page that provides an overview of your API Reference. This page can include general information about your API, such as authentication requirements, rate limits, or other important details.
