@@ -174,6 +174,15 @@ versions:
 <Info>The default version (the first version in your `versions` list) can't be hidden.</Info>
 
 </Accordion>
+<Accordion title="Conditionally render content">
+To conditionally render content within a page based on the current version, use the [`<If>` component](/learn/docs/writing-content/components/if#by-version).
+
+```jsx Markdown
+<If versions={["v2"]}>
+  This content only appears in version v2.
+</If>
+```
+</Accordion>
 </AccordionGroup>
 
 ## Customize version styling
