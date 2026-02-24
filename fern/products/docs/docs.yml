@@ -255,12 +255,16 @@ navigation:
             slug: generate-api-ref
           - page: Webhook Reference
             path: ./pages/api-references/generate-webhook-ref.mdx
+            slug: generate-webhook-ref
           - page: WebSocket Reference
             path: ./pages/api-references/generate-websocket-ref.mdx
             slug: generate-websocket-ref
           - page: OpenRPC Reference
             path: ./pages/api-references/generate-openrpc-ref.mdx
             slug: generate-openrpc-ref
+          - page: gRPC Reference
+            path: ./pages/api-references/generate-grpc-ref.mdx
+            slug: generate-grpc-ref
           - page: GraphQL Reference
             path: ./pages/api-references/generate-graphql-ref.mdx
             slug: generate-graphql-ref
