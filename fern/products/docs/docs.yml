@@ -388,6 +388,9 @@ navigation:
         path: ./pages/developer-tools/vale.mdx  
       - page: View Markdown
         path: ./pages/developer-tools/view-markdown.mdx
+      - page: Download OpenAPI spec
+        path: ./pages/ai/openapi-spec.mdx
+        slug: openapi-spec
   - section: Resources
     collapsed: true
     hidden: true
