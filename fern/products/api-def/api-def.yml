@@ -49,8 +49,9 @@ navigation:
             path: ./openapi-pages/extensions/availability.mdx
           - page: Base path
             path: ./openapi-pages/extensions/base-path.mdx
-          - page: Enum descriptions and names
+          - page: Enum descriptions, names, and availability
             path: ./openapi-pages/extensions/enums.mdx
+            slug: enum-descriptions-and-names
           - page: Request + response examples
             path: ./openapi-pages/extensions/examples.mdx
           - page: API Explorer control
