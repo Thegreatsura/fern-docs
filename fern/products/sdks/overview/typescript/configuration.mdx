@@ -297,6 +297,47 @@ import { AcmePayments, AcmePaymentsClient } from "@acme/node";
 
 </ParamField>
 
+<ParamField path="naming" type="string | object" toc={true}>
+Customize the namespace export and class/type names. Accepts a string shorthand or a full object.
+
+**String shorthand** — sets the namespace and derives all class names via PascalCase:
+
+```yaml title="generators.yml"
+config:
+  naming: acme
+```
+
+```typescript
+import { acme, AcmeClient } from "acme";
+```
+
+**Object form** — override individual names:
+
+```yaml title="generators.yml"
+config:
+  naming:
+    namespace: acme
+    client: AcmeSdkClient
+    error: AcmeSdkError
+    environment: AcmeSdkEnvironment
+```
+
+```typescript
+import { acme, AcmeSdkClient } from "acme";
+```
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `namespace` | `string` | Namespace export name. Equivalent to `namespaceExport`. |
+| `client` | `string` | Client class name (default: `${PascalCase(namespace)}Client`). |
+| `error` | `string` | Generic API error class name (default: `${PascalCase(namespace)}Error`). |
+| `timeoutError` | `string` | Timeout error class name (default: `${PascalCase(namespace)}TimeoutError`). |
+| `environment` | `string` | Environment enum name (default: `${PascalCase(namespace)}Environment`). |
+| `environmentUrls` | `string` | Environment URLs type name (default: `${PascalCase(namespace)}EnvironmentUrls`). |
+| `version` | `string` | Version enum name (default: `${PascalCase(namespace)}Version`). |
+
+`namespaceExport` is still supported for backwards compatibility but `naming.namespace` takes precedence.
+</ParamField>
 
 <ParamField path="neverThrowErrors" type="boolean" default="false" toc={true}>
   When enabled, the client doesn't throw errors when a non-200 response is received from the server. Instead, the response is wrapped in an [`ApiResponse`](https://github.com/fern-api/fern/blob/main/seed/ts-sdk/alias/src/core/fetcher/APIResponse.ts).
