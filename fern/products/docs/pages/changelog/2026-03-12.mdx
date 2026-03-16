@@ -1,6 +1,27 @@
 ---
-tags: ["navigation", "configuration", "docs.yml"]
+tags: ["components", "navigation", "configuration", "docs.yml"]
 ---
+
+## Multi-file ZIP downloads
+
+The `<Download>` component now supports bundling multiple files into a single ZIP download using the new `sources` prop. This is useful when you want users to download a collection of related assets — such as brand logos, SDK files, or configuration templates — without needing to host a pre-built ZIP file.
+
+Pass an array of publicly accessible URLs to `sources`, and the component fetches each file client-side and packages them into a ZIP archive:
+
+```jsx Markdown
+<Download
+  sources={[
+    "https://example.com/assets/logo-dark.svg",
+    "https://example.com/assets/logo-light.svg",
+    "https://example.com/assets/icon.svg"
+  ]}
+  filename="brand-assets.zip"
+>
+  <Button intent="primary">Download brand assets</Button>
+</Download>
+```
+
+<Button intent="none" outlined rightIcon="arrow-right" href="/learn/docs/writing-content/components/download">Read the docs</Button>
 
 ## `open-by-default` option for collapsed sections
 
