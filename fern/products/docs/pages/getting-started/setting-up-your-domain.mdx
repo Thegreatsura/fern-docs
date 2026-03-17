@@ -116,12 +116,21 @@ Contact Fern via your dedicated Slack channel or [email](mailto:support@buildwit
 
 <Step title="Verify the setup">
 
-Once Fern has completed your setup, you'll be able to access your documentation at `mydomain.com/docs`. It may take a few minutes for DNS changes to propagate globally.
+Once Fern has completed your setup, you'll be able to access your documentation at `mydomain.com/docs`. It may take a few minutes for DNS changes to propagate globally. Try accessing your new docs site from a mobile device or incognito browser to confirm everything is working.
 
-<Tip>Check that you can access your new docs site from a mobile device or incognito browser.</Tip>
+<Warning title="HTTP/2 transfer errors with nginx">
+If you see partial page loads or HTTP/2 transfer errors, nginx's lack of native [Brotli](https://github.com/google/brotli) support may be the cause. Fern's CDN serves Brotli-compressed responses by default, which nginx can't decode when proxying upstream.
+
+Add this directive to your nginx config to request only supported encodings:
+
+```nginx
+proxy_set_header Accept-Encoding "gzip,deflate";
+```
+</Warning>
 </Step>
 
 </Steps>
+
 </Accordion>
 <Accordion title="Root domain">
 
@@ -203,4 +212,4 @@ instances:
 
 <Info>
 After configuring multiple domains in your `docs.yml`, contact Fern via your dedicated Slack channel or [email](mailto:support@buildwithfern.com) to complete the setup. You'll receive DNS configuration details for each domain.
-</Info>      
+</Info>                        
