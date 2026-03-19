@@ -1183,8 +1183,8 @@ h1, h2, h3 {
 
 /*** START -- ASK AI PANEL STYLING ***/
 @media (min-width: 1024px) {
-  .fern-ask-ai-panel-header {
-    height: 76px;
+  #fern-ask-ai-panel-header {
+    height: calc(var(--header-height-real) + 1px);
   }
 }
 /*** END -- ASK AI PANEL STYLING ***/
