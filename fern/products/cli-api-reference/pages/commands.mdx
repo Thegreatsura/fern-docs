@@ -360,7 +360,7 @@ hideOnThisPage: true
 
     <CodeBlock title="terminal">
     ```bash
-    fern generate --docs [instance <instance-url>] [--preview]
+    fern generate --docs [instance <instance-url>] [--preview] [--id <name>]
     ```
     </CodeBlock>
 
@@ -379,6 +379,17 @@ hideOnThisPage: true
     ```bash
     fern generate --docs --preview
     ```
+
+    ### id
+
+    Use `--id` with `--preview` to create a stable, named preview link. The preview URL follows the format `{org}-preview-{id}.docs.buildwithfern.com`, so rerunning with the same `--id` updates the existing preview in place rather than creating a new one.
+
+    ```bash
+    fern generate --docs --preview --id my-feature
+    # -> https://your-org-preview-my-feature.docs.buildwithfern.com
+    ```
+
+    This is useful in CI workflows where you want one preview URL per pull request. See [Preview changes](/learn/docs/preview-publish/preview-changes#preview-links) for details.
 
   </Accordion>
 
