@@ -58,6 +58,13 @@ fern generate --docs --preview --id my-feature
 # With --id my-feature (stable URL)
 [docs]: Published docs to https://fern-preview-my-feature.docs.buildwithfern.com/learn
 ```
+<Info>
+  When a preview with the same `--id` already exists, Fern prompts you to confirm the overwrite. This is skipped automatically in GitHub Actions, but for other CI environments (e.g., Azure Pipelines), use `--force` to skip the confirmation.
+
+  ```bash
+  fern generate --docs --preview --id my-feature --force
+  ```
+</Info>
 
 You can [delete a preview deployment](/learn/cli-api-reference/cli-reference/commands#fern-docs-preview-delete) when it's no longer needed:
 
@@ -72,7 +79,7 @@ You can use a GitHub Actions workflow to automatically generate a preview URL wh
 <Frame>
     <img
     src="./images/markdown-links-preview.png"
-    alt="GitHub Actions bot comment on a pull request showing a preview URL and direct links to changed documentation pages"
+    alt="GitHub Actions bot comment on a pull request showing a named preview URL and direct links to changed documentation pages"
     />
 </Frame>
 
