@@ -69,9 +69,6 @@ jobs:
             "^tel:",
             "^javascript:",
             
-            # Anchor-only links
-            "^#",
-            
             # All GitHub URLs - checked separately in dedicated steps
             "^https://github\\.com/"
           ]
@@ -368,6 +365,7 @@ jobs:
             --max-retries 3
             --retry-wait-time 10
             --max-concurrency 20
+            --include-fragments
             --files-from urls.txt
           output: ./lychee-raw-main.md
           format: markdown
