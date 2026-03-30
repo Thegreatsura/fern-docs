@@ -62,21 +62,15 @@ Here's an example of how a tabs implementation renders:
 
 ### Tabs placement and styling
 
-Tabs display in the left sidebar by default. To display them horizontally, [set `tabs-placement` to `header`](/learn/docs/configuration/site-level-settings#layouttabs-placement).
-
-<CodeBlock title="docs.yml">
-```yaml
-layout:
-  tabs-placement: header
-```
-</CodeBlock>
-
-You can also change the visual style of tabs using the [`theme.tabs`](/learn/docs/configuration/site-level-settings#themetabs) setting.
+Tabs display in the left sidebar by default. Use [`theme.tabs`](/learn/docs/configuration/site-level-settings#theme-configuration) to control placement, style, and alignment.
 
 <CodeBlock title="docs.yml">
 ```yaml
 theme:
-  tabs: bubble
+  tabs:
+    style: bubble        # "default" (underline) or "bubble" (pill-shaped)
+    alignment: center    # "left" or "center" (center only applies to header tabs)
+    placement: header    # "header" or "sidebar"
 ```
 </CodeBlock>
 
