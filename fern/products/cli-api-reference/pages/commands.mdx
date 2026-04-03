@@ -16,6 +16,7 @@ hideOnThisPage: true
 | [`fern logout`](#fern-logout) | Log out of the Fern CLI |
 | [`fern export`](#fern-export) | Export an OpenAPI spec for your API |
 | [`fern api update`](#fern-api-update) | Manually update your OpenAPI spec |
+| [`fern api enrich`](#fern-api-enrich) | Merge `x-fern-examples` from an overrides file into native OpenAPI examples |
 
 ## Documentation commands
 
@@ -757,5 +758,40 @@ hideOnThisPage: true
     fern api update --api public-api
     ```
   </CodeBlock>
+  </Accordion>
+
+  <Accordion title="fern api enrich">
+
+    Use `fern api enrich` to convert [AI-generated examples](/learn/docs/ai-features/ai-examples) or manually authored [`x-fern-examples`](/learn/api-definitions/openapi/extensions/request-response-examples) into portable OpenAPI examples that any OpenAPI-compatible tool can consume.
+
+    <CodeBlock title="terminal">
+    ```bash
+    fern api enrich <openapi> -f <overrides-file> -o <output-file>
+    ```
+    </CodeBlock>
+
+    The command merges examples from an overrides file into native OpenAPI `example` fields and strips the `x-fern-examples` keys from the output. When an endpoint has multiple examples, each is stored as a named entry under the plural `examples` field.
+
+    The command requires two flags:
+
+    - `-f` (or `--file`) — the overrides file containing `x-fern-examples` (e.g., `ai_examples_override.yml`).
+    - `-o` (or `--output`) — the path for the enriched output file. Supports `.yml` and `.json` extensions.
+
+    ```bash
+    # Output as YAML
+    fern api enrich openapi.yml -f overrides.yml -o enriched-openapi.yml
+
+    # Output as JSON
+    fern api enrich openapi.yml -f overrides.yml -o enriched-openapi.json
+    ```
+
+    Each `x-fern-examples` field is mapped to its standard OpenAPI location:
+
+    - `path-parameters` → `parameters[].example` (where `in: path`)
+    - `query-parameters` → `parameters[].example` (where `in: query`)
+    - `headers` → `parameters[].example` (where `in: header`)
+    - `request.body` → `requestBody.content.*.example`
+    - `response.body` → `responses.<status>.content.*.example`
+
   </Accordion>
 </AccordionGroup>
