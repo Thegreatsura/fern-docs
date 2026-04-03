@@ -1,6 +1,17 @@
 ---
-tags: ["api-reference", "configuration", "docs.yml"]
+tags: ["ai", "configuration", "api-reference", "docs.yml"]
 ---
+
+## Per-page directives in llms.txt
+
+You can add a directive that's automatically prepended to every page when it's served to AI agents — both individual Markdown page URLs and each page section within `llms-full.txt`. The directive is only visible to agents requesting Markdown; human-facing documentation is unaffected.
+
+```yaml docs.yml
+agents:
+  page-directive: "For a complete page index, fetch https://docs.example.com/llms.txt"
+```
+
+<Button intent="none" outlined rightIcon="arrow-right" href="/learn/docs/ai-features/llms-txt#per-page-directives">Read the docs</Button>
 
 ## Library docs generator
 
