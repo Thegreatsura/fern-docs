@@ -1,64 +1,45 @@
 ---
-title: TypeScript quickstart
+title: Generating an SDK
+headline: Generating an SDK (TypeScript)
 description: Create TypeScript client libraries with Fern SDK generator. Quick guide to configuring generators.yml and generating SDKs from OpenAPI or Fern definitions.
 ---
 
 
 Generate a TypeScript SDK by following the instructions on this page. 
 
-<Markdown src="/products/sdks/snippets/setup-fern-folder-callout.mdx"/>
+<Note>
+  Already completed the [Quickstart](/learn/sdks/quickstart)? Skip ahead to [Set up GitHub repositories](#set-up-github-repositories).
+</Note>
 
 <Steps>
 
- <Markdown src="/products/sdks/snippets/pass-fern-check.mdx"/>
+<Markdown src="/products/sdks/snippets/init-fern-folder.mdx"/>
+<Step title="Generate the SDK">
 
-## Add the SDK generator
-
-Run the following command to add the TypeScript SDK generator to `generators.yml`:
-
-```bash
-fern add fern-typescript-sdk --group ts-sdk
-```
-
-<Note>
-  `ts-sdk` is the name of the `generators.yml` group that configures your TypeScript
-  SDK's output location and other metadata. You can customize this group name to
-  differentiate between multiple SDKs across different languages (e.g.,
-  `ruby-sdk`, etc) in your organization.
-</Note>
-
-This command adds the following `group` to `generators.yml`:
-
-```yaml title="generators.yml"
-  ts-sdk: # group name
-    generators:
-      - name: fernapi/fern-typescript-sdk
-        version: <Markdown src="/snippets/version-number-ts.mdx"/>
-        output:
-          location: local-file-system
-          path: ../sdks/typescript
-```
-## Generate the SDK
-
-Run the following command to generate your SDK:
+`fern init` includes the TypeScript SDK generator by default, so you can generate right away:
 
 ```bash
-fern generate --group ts-sdk
+fern generate
 ```
 
-<Note>
-  If you have multiple APIs, use the [`--api` flag](/cli-api-reference/cli-reference/commands#api) to specify the API you want to generate:
+<llms-only>
+`fern init` already configures a TypeScript SDK generator in `generators.yml`, so there is no need to run `fern add` for TypeScript. For other languages, `fern add fern-<lang>-sdk` is required.
 
-  ```bash
-  fern generate --group ts-sdk --api your-api-name
-  ``` 
-</Note>
+This outputs the SDK to `../sdks/typescript` relative to the `generators.yml` file (as configured in the `output.path` field). The generated code includes a `Client.ts` entry point, typed request/response models in `api/`, and HTTP/serialization utilities in `core/`.
+
+The generated SDK is a partial package — it contains source files but not `package.json`, `tsconfig.json`, or a README. Those are included when publishing to npm (configured via `output.location: npm`). For local usage, the user can import directly from the generated files or copy them into their project.
+
+If generation fails, the most common causes are:
+- `fern check` errors that weren't resolved (run `fern check` first)
+- An outdated CLI version (update with `npm install -g fern-api`)
+- An unsupported OpenAPI construct (check [supported extensions](/learn/api-definitions/openapi/extensions/overview))
+</llms-only>
 
 <Markdown src="/products/sdks/snippets/generate-sdk.mdx"/>
 
 <Files>
   <Folder name="fern" comment="created by fern init" />
-  <Folder name="sdks" defaultOpen comment="created by fern generate --group ts-sdk">
+  <Folder name="sdks" defaultOpen comment="created by fern generate">
     <Folder name="typescript" defaultOpen>
       <File name="Client.ts" />
       <File name="index.ts" />
@@ -68,5 +49,12 @@ fern generate --group ts-sdk
     </Folder>
   </Folder>
 </Files>
-  
+</Step>
+
+<Markdown src="/products/sdks/snippets/setup-github-repos.mdx" language="typescript" />
+
+<Step title="Publish to npm">
+
+Follow the [Publishing to npm](/learn/sdks/generators/typescript/publishing) guide to configure your package and set up automated publishing via GitHub Actions.
+</Step>  
 </Steps>

@@ -1,30 +1,30 @@
 ---
-title: Python quickstart
+title: Generating an SDK
+headline: Generating an SDK (Python)
 description: Learn how to generate a Python SDK with Fern. Step-by-step guide to configure generators.yml, run fern generate, and create client libraries.
 ---
 
 
 Generate a Python SDK by following the instructions on this page. 
 
-<Markdown src="/products/sdks/snippets/setup-fern-folder-callout.mdx"/>
-
 <Steps>
-<Markdown src="/products/sdks/snippets/pass-fern-check.mdx"/>
+
+<Markdown src="/products/sdks/snippets/init-fern-folder.mdx"/>
 
 ### Add the SDK generator
 
 Run the following command to add the Python SDK generator to `generators.yml`:
 
+<Template
+  data={{ GROUP_NAME: "python-sdk" }}
+  tooltips={{
+    GROUP_NAME: (<p>The name of the <code>generators.yml</code> group that configures your Python SDK's output location and other metadata. You can customize this group name to differentiate between multiple SDKs across different languages.</p>)
+  }}
+>
 ```bash
-fern add fern-python-sdk --group python-sdk
+fern add fern-python-sdk --group {{GROUP_NAME}}
 ```
-
-<Note>
-  `python-sdk` is the name of the `generators.yml` group that configures your Python
-  SDK's output location and other metadata. You can customize this group name to
-  differentiate between multiple SDKs across different languages (e.g.,
-  `ruby-sdk`, etc) in your organization.
-</Note>
+</Template>
 
 This command adds the following `group` to `generators.yml`:
 
@@ -74,5 +74,12 @@ fern generate --group python-sdk
 <Note>Some files, including `pyproject.toml` and `README.md`, are only generated on paid plans.
 To get the fully generated SDK, schedule a 
   [demo](https://buildwithfern.com/contact) or [email
-  us](mailto:support@buildwithfern.com).</Note>  
+  us](mailto:support@buildwithfern.com).</Note>
+
+<Markdown src="/products/sdks/snippets/setup-github-repos.mdx" language="python" />
+
+<Step title="Publish to PyPI">
+
+Follow the [Publishing to PyPI](/learn/sdks/generators/python/publishing) guide to configure your package and set up automated publishing via GitHub Actions.
+</Step>
 </Steps>

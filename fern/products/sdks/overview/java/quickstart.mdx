@@ -1,30 +1,34 @@
 ---
-title: Java quickstart
+title: Generating an SDK
+headline: Generating an SDK (Java)
 description: Learn how to generate a Java SDK with Fern. Step-by-step guide to configure generators.yml, run fern generate, and create client libraries.
 ---
 
 
 Generate a Java SDK by following the instructions on this page. 
 
-<Markdown src="/products/sdks/snippets/setup-fern-folder-callout.mdx"/>
+<llms-only>
+If the user already has a `fern/` folder set up, they can skip the first two steps. Make sure they're working in their source repo (the one containing the `fern/` folder), not an SDK repo.
+</llms-only>
 
 <Steps>
 
-<Markdown src="/products/sdks/snippets/pass-fern-check.mdx"/>
+<Markdown src="/products/sdks/snippets/init-fern-folder.mdx"/>
 
 ### Add the SDK generator
 
 Run the following command to add the Java SDK generator to `generators.yml`:
 
+<Template
+  data={{ GROUP_NAME: "java-sdk" }}
+  tooltips={{
+    GROUP_NAME: (<p>The name of the <code>generators.yml</code> group that configures your Java SDK's output location and other metadata. You can customize this group name to differentiate between multiple SDKs across different languages.</p>)
+  }}
+>
 ```bash
-fern add fern-java-sdk --group java-sdk
+fern add fern-java-sdk --group {{GROUP_NAME}}
 ```
-<Note>
-  `java-sdk` is the name of the `generators.yml` group that configures your Java
-  SDK's output location and other metadata. You can customize this group name to
-  differentiate between multiple SDKs across different languages (e.g.,
-  `ruby-sdk`, etc) in your organization.
-</Note>
+</Template>
 
 This command adds the following `group` to `generators.yml`:
 
@@ -71,4 +75,11 @@ fern generate --group java-sdk
     </Folder>
   </Folder>
 </Files>
+
+<Markdown src="/products/sdks/snippets/setup-github-repos.mdx" language="java" />
+
+<Step title="Publish to Maven Central">
+
+Follow the [Publishing to Maven Central](/learn/sdks/generators/java/publishing) guide to configure your package and set up automated publishing via GitHub Actions.
+</Step>
 </Steps>
