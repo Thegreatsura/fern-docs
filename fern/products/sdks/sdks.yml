@@ -71,6 +71,9 @@ navigation:
           - page: Dynamic authentication
             path: ./generators/python/dynamic-authentication.mdx
             slug: dynamic-authentication
+          - page: aiohttp support
+            path: ./generators/python/aiohttp-support.mdx
+            slug: aiohttp-support
           - changelog: ./generators/python/changelog
             slug: changelog
           - link: Customer showcase
