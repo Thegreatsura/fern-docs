@@ -457,7 +457,15 @@ hideOnThisPage: true
     </CodeBlock>
 
     <Warning>
-    `fern docs dev` isn't supported on Windows. Use [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) to run the command in a Linux environment.
+    On Windows, `fern docs dev` requires [long path support](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) to be enabled.
+
+    To enable long path support, run the following command in an elevated PowerShell prompt, then restart your terminal:
+
+    ```powershell
+    New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1 -PropertyType DWORD -Force
+    ```
+
+    If you can't enable long path support, use [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) to run `fern docs dev` in a Linux environment instead.
     </Warning>
 
     ### port
