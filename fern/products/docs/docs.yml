@@ -178,9 +178,20 @@ navigation:
       - page: AI-generated examples
         path: ./pages/ai/ai-examples.mdx
         slug: ai-examples
-      - page: llms.txt
-        path: ./pages/ai/llms-txt.mdx
-        slug: llms-txt
+      - section: llms-txt
+        collapsed: open-by-default
+        skip-slug: true
+        contents:
+          - page: Overview
+            path: ./pages/ai/llms-txt/overview.mdx
+            slug: llms-txt
+          - page: Customize LLM output
+            path: ./pages/ai/llms-txt/customize-llms-txt.mdx
+          - page: Agent directives
+            path: ./pages/ai/llms-txt/directives.mdx
+          - page: Analytics and integration
+            path: ./pages/ai/llms-txt/analytics-integration.mdx
+            slug: llms-txt-analytics
       - section: Ask Fern
         slug: ask-fern
         contents:
