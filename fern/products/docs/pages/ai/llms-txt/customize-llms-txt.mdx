@@ -25,35 +25,55 @@ Use the `<llms-ignore>` tag to show content to human readers on your documentati
 
 ### Example
 
-In the example below, human readers see the sign-up callout but not the scope note, while AI agents receive the scope note but not the callout:
+Fern's own [docs quickstart](https://github.com/fern-api/docs/blob/main/fern/products/docs/pages/getting-started/quickstart.mdx) pairs GitHub UI click-through steps with their CLI equivalent:
 
-```mdx docs/authentication.mdx
-## Authentication
-
-<llms-only>
-This endpoint requires a bearer token scoped to `read:users`.
-</llms-only>
-
-Include your API key in the `Authorization` header.
+````jsx quickstart.mdx wordWrap
+Use the `fern-api/docs-starter` repository as a template for your site:
 
 <llms-ignore>
-  <Callout intent="info">
-    Need an API key? [Sign up for free](https://example.com/signup) to get started.
-  </Callout>
+1. Navigate to [fern-api/docs-starter](https://github.com/fern-api/docs-starter) and click on the **Use this template** button (found at the top right of this page). You must be logged into GitHub.
+2. Choose the option to **create a new repository**. Name it `fern-docs`.
+3. Clone your newly created repository and open it in your favorite code editor (e.g., Cursor, VS Code).
 </llms-ignore>
+
+<llms-only>
+Use the GitHub CLI to create a new repository from the template and clone it locally:
+
+```bash
+gh repo create my-org/fern-docs --template fern-api/docs-starter --private --clone
+cd fern-docs
 ```
+
+Replace `my-org/fern-docs` with your desired owner and repository name. Use `--public` instead of `--private` if you want a public repository.
+</llms-only>
+````
 
 <div className="highlight-frame">
   <div className="highlight-frame-content">
-    **Authentication**
+  Use the `fern-api/docs-starter` repository as a template for your site:
 
-    Include your API key in the `Authorization` header.
+  <llms-ignore>
+  1. Navigate to [fern-api/docs-starter](https://github.com/fern-api/docs-starter) and click on the **Use this template** button (found at the top right of this page). You must be logged into GitHub.
+  2. Choose the option to **create a new repository**. Name it `fern-docs`.
+  3. Clone your newly created repository and open it in your favorite code editor (e.g., Cursor, VS Code).
+  </llms-ignore>
 
-    <Callout intent="info">
-      Need an API key? [Sign up for free](https://example.com/signup) to get started.
-    </Callout>
+  <llms-only>
+  Use the GitHub CLI to create a new repository from the template and clone it locally:
+
+  ```bash
+  gh repo create my-org/fern-docs --template fern-api/docs-starter --private --clone
+  cd fern-docs
+  ```
+
+  Replace `my-org/fern-docs` with your desired owner and repository name. Use `--public` instead of `--private` if you want a public repository.
+  </llms-only>
   </div>
 </div>
+
+On the docs site, human readers see only the numbered UI steps — the `<llms-only>` block is hidden. LLMs reading this page's Markdown output see the inverse: no UI steps, only the `gh repo create` command they can actually run. Each audience gets the path they can act on.
+
+The guiding principle: **UI-only elements belong to human readers, and their programmatic equivalents belong to AI agents.** Wrap clickable cards and UI walkthroughs in `<llms-ignore>` so agents skip them, and pair each UI step with an `<llms-only>` block that gives the CLI or API equivalent.
 
 To preview and debug what AI sees for any page, you can append `.md` or `.mdx` to the page URL to [view its Markdown source](/learn/docs/developer-tools/view-markdown).
 
