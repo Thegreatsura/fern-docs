@@ -261,6 +261,12 @@ navigation:
         path: ./pages/customization/custom-react-components.mdx
       - page: Header and footer
         path: ./pages/customization/custom-header-footer.mdx
+  - section: Localization
+    collapsed: true
+    availability: pre-release
+    contents:
+      - page: Overview
+        path: ./pages/localization/overview.mdx
   - section: Accessibility
     collapsed: true
     contents:
