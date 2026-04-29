@@ -16,15 +16,7 @@ Your MCP server is available at `your-documentation-site.com/_mcp/server`. For e
 
 Both buttons are enabled by default on sites with Ask Fern. For other clients (Claude Desktop, Windsurf, etc.), users can add `your-documentation-site.com/_mcp/server` to their MCP configuration.
 
-## Direct API access for AI agents
+## Other ways agents can access your docs
 
-AI agents can access your documentation directly via HTTP. Fern serves content as clean Markdown for token efficiency.
+In addition to MCP, agents can fetch documentation directly over HTTP. Fern serves clean Markdown via [per-page URLs, `llms.txt`, and `llms-full.txt`](/learn/docs/ai-features/markdown) — including on authenticated sites.
 
-For authenticated sites, agents obtain a JWT via [`/api/fern-docs/get-jwt`](/learn/docs/fern-api-reference/get-jwt) with a Fern API key to access protected documentation content and search functionality.
-
-```bash Access protected content
-curl https://docs.example.com/platform/overview \
-  -H 'Accept: text/plain' \
-  -H 'x-fern-host: docs.example.com' \
-  -H 'FERN_TOKEN: your-jwt-here'
-```
