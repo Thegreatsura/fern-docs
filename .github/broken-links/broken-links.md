@@ -19,16 +19,7 @@
 
 ## Non-429 Broken Links
 
-- [404] https://buildwithfern.com/learn/docs/preview-publish/multi-source
-- [404] https://buildwithfern.com/learn/docs/preview-publish/multi-source
-- [404] https://buildwithfern.com/learn/zh/dashboard/assets/pdf-ui.png
 - [404] https://buildwithfern.com/products/sdks/custom-code.mdx
-- [404] https://buildwithfern.com/zh
-- [404] https://buildwithfern.com/zh
-
-## GitHub URLs Missing Locally
-
-- [LOCAL_MISSING] https://github.com/fern-api/protoc-gen-openapi/releases/tag/v0.1.7） (tag: v0.1.7） in fern-api/protoc-gen-openapi)
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25373198709)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25433526320)
