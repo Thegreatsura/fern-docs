@@ -19,7 +19,9 @@
 
 ## Non-429 Broken Links
 
-- [404] https://buildwithfern.com/products/sdks/custom-code.mdx
+- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/overview
+- [404] https://buildwithfern.com/learn/zh/docs/preview-publish/multi-source-docs
+- [404] https://buildwithfern.com/learn/zh/docs/seo/robots-txt
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25494018584)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25670728095)
