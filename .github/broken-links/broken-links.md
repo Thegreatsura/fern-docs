@@ -24,4 +24,4 @@
 - [404] https://buildwithfern.com/learn/zh/docs/seo/robots-txt
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25670728095)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25732981238)
