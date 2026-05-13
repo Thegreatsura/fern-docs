@@ -19,9 +19,14 @@
 
 ## Non-429 Broken Links
 
+- [404] https://buildwithfern.com/learn/sdks/introduction
+- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/authentication
+- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/customization
+- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/features
+- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/openapi-extensions
 - [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/overview
 - [404] https://buildwithfern.com/learn/zh/docs/preview-publish/multi-source-docs
 - [404] https://buildwithfern.com/learn/zh/docs/seo/robots-txt
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25732981238)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25798083213)
