@@ -55,13 +55,26 @@ Because the `<h1>` is generated automatically, you should begin your page conten
 ## Links in Markdown
 
 ### Link format
-Use a `/` character to begin a relative URL to another page on your docs site. This routes to the `url` defined in your `docs.yml` file, such as `example-docs.buildwithfern.com`. For example, if you want to link to `https://example-docs.buildwithfern.com/overview/introduction`, you can write the link in Markdown as follows:
 
-<CodeBlock title='Relative link example'>
-```mdx
-Read the [Introduction](/learn/sdks/overview/introduction).
+To link to another page on your docs site, write the destination's **published site path**, starting with a `/`. Fern builds this path from the slugs in your [`docs.yml` and product YAML files](/learn/docs/configuration/navigation), not from the file's location on disk. To link to a heading on another page, append `#anchor` to the path. 
+
+<Info>
+  File-relative paths like `./` and `../` aren't supported for inter-page links — use the published site path instead. (File-relative paths are still correct for [images and other media](/learn/docs/writing-content/markdown-media) and for `path:` references inside YAML config.)
+</Info>
+
+<CodeBlock title='Internal link example'>
+```mdx wordWrap
+Learn about [how Fern SDKs work](/learn/sdks/overview/how-it-works).
+
+Configure [sidebar icons](/learn/docs/configuration/navigation#sidebar-icons) to add visual cues to your navigation.
 ```
 </CodeBlock>
+
+In [versioned docs](/learn/docs/configuration/versions), the same path lands on a different version depending on whether you write the unversioned form (default version) or the versioned form (e.g. `/learn/docs/v2/getting-started`). For inline version-specific content within a single page, use [`<If versions=…>`](/learn/docs/writing-content/components/if#by-version) or [`<Versions>`](/learn/docs/writing-content/components/versions).
+
+### Validating links
+
+The [`broken-links` rule](/learn/docs/configuration/site-level-settings#check-configuration) — run by [`fern check`](/learn/cli-api-reference/cli-reference/commands#fern-check), including during `fern docs dev` — validates each internal link against the navigation tree built from your **local** YAML. It does not crawl your deployed site or follow external URLs. To check links on a published site, use the [Fern Dashboard](https://dashboard.buildwithfern.com/).
 
 ### API link syntax
 
