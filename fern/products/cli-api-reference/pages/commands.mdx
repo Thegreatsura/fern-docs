@@ -29,6 +29,7 @@ hideOnThisPage: true
 | [`fern docs md check`](#fern-docs-md-check) | Validate MDX syntax in documentation files |
 | [`fern docs theme export`](#fern-docs-theme-export) | Export theme-eligible fields from `docs.yml` into a standalone directory |
 | [`fern docs theme upload`](#fern-docs-theme-upload) | Upload a theme to Fern's registry |
+| [`fern docs link check`](#fern-docs-link-check) | Check for broken links on a live documentation site |
 | [`fern docs theme list`](#fern-docs-theme-list) | List all themes for your organization |
 
 ## SDK generation commands  
@@ -281,8 +282,6 @@ hideOnThisPage: true
     Use `fern check` to validate your API definition and Fern configuration, including [`fern.config.json`](/learn/sdks/overview/project-structure#fernconfigjson), `generators.yml`, and `docs.yml`. It checks for broken links, invalid API examples, configuration errors, and more. When all checks pass, the command produces no output.
 
      Most `fern check` rules — including [`broken-links`](/learn/docs/configuration/site-level-settings#check-configuration) — validate against the navigation tree built from your **local** config and do not crawl your live deployed site or follow external URLs. The exception is the [`missing-redirects` rule](/learn/docs/seo/redirects#catching-missing-redirects), which compares your local navigation against the previously published state and therefore requires `fern login` or `FERN_TOKEN`.
-    
-    To check links on a published site, use the link checker in the [Fern Dashboard](https://dashboard.buildwithfern.com/) instead. When all checks pass, the command produces no output.
 
     <CodeBlock title="terminal">
     ```bash
@@ -299,6 +298,10 @@ hideOnThisPage: true
         example-validation: warn
         missing-redirects: error
     ```
+
+    <Info>
+      To check links on a published site, use [`fern docs link check`](#fern-docs-link-check) or the link checker in the [Fern Dashboard](https://dashboard.buildwithfern.com/) instead.
+    </Info>
 
     ### api
 
@@ -462,6 +465,73 @@ hideOnThisPage: true
 
     ```bash
     fern docs dev --port 57908
+    ```
+
+  </Accordion>
+
+  <Accordion title="fern docs link check">
+
+    Use `fern docs link check` to scan a live documentation site for broken links. The command crawls the published site, checks every link, and reports broken (404) and blocked (403) URLs along with their source pages.
+
+    <CodeBlock title="terminal">
+    ```bash
+    fern docs link check [--url <url>] [--output <format>]
+    ```
+    </CodeBlock>
+
+    <Info>
+      Unlike the [`broken-links` rule](#fern-check) in `fern check`, which validates only internal links in your local YAML navigation tree, `fern docs link check` checks all links — internal and external — on your live deployed site.
+    </Info>
+
+    By default, the command auto-detects your docs URL from the `instances` in `docs.yml`. When all links are valid, the command exits with a success message.
+
+    The command first scrapes every page on the site, then checks each link it finds. When broken links are found, the output includes a summary and a grouped list of broken URLs with status codes and source file paths.
+
+    ```plaintext
+    ◆ Checking links on your-org.docs.buildwithfern.com...
+
+      Scraping pages [████████████████████] 100% | 42/42
+      Checking links [████████████████████] 100% | 240/240
+
+    Finished in 2 minutes, 23 seconds
+
+    Summary
+        Pages scanned    42
+        Links checked    240
+        ✓ Working        228
+        ✗ Broken         8 (external)
+        ⚠ Blocked        4
+
+    ─────────────────────────────────────
+
+    External Broken Links (8)
+
+      ✗ https://example.com/removed-page → 404
+            fern/pages/quickstart.mdx
+            fern/pages/overview.mdx
+
+      ✗ https://example.com/old-endpoint → 404
+            fern/pages/integrations.mdx
+    ```
+
+    ### url
+
+    Use `--url` to specify which docs site to check. This is useful when you have multiple instances or want to check a preview deployment.
+
+    ```bash
+    fern docs link check --url https://your-org.docs.buildwithfern.com
+    ```
+
+    ### output
+
+    Use `--output` to control the output format. Supported values are `text` (default), `json`, and `csv`.
+
+    ```bash
+    # JSON output for programmatic use
+    fern docs link check --output json
+
+    # CSV output for spreadsheets or reporting
+    fern docs link check --output csv
     ```
 
   </Accordion>
