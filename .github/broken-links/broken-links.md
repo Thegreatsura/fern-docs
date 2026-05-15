@@ -19,14 +19,11 @@
 
 ## Non-429 Broken Links
 
-- [404] https://buildwithfern.com/learn/sdks/introduction
-- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/authentication
-- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/customization
-- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/features
-- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/openapi-extensions
-- [404] https://buildwithfern.com/learn/zh/cli-generator/get-started/overview
-- [404] https://buildwithfern.com/learn/zh/docs/preview-publish/multi-source-docs
-- [404] https://buildwithfern.com/learn/zh/docs/seo/robots-txt
+- [404] https://buildwithfern.com/learn/zh/docs/ai-features/writer-open-pr.png
+- [404] https://buildwithfern.com/learn/zh/docs/ai-features/writer-slack.png
+- [404] https://buildwithfern.com/learn/zh/docs/writing-content/components/runnable-endpoint.png
+- [404] https://buildwithfern.com/learn/zh/images/fern-definition-dark.svg
+- [404] https://buildwithfern.com/learn/zh/images/fern-definition-light.svg
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25798083213)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25916576488)
