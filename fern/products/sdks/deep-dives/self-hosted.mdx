@@ -13,7 +13,7 @@ Fern SDK generation [runs on Fern's infrastructure by default](/sdks/overview/ho
 - Has strict compliance or security requirements
 - Needs full control over your SDK generation process
 
-When you self-host, you're responsible for infrastructure management and SDK distribution. Self-hosted SDK generation includes [all Fern SDK features](/learn/sdks/overview/capabilities).
+When you self-host, you're responsible for infrastructure management, SDK distribution, and [computing SDK version numbers](/learn/sdks/deep-dives/self-hosted-versioning). Self-hosted SDK generation includes [all Fern SDK features](/learn/sdks/overview/capabilities).
 
 <Info>
 Unless you have specific requirements that prevent using Fern's default hosting, we recommend **using our managed cloud generation solution** for easier setup and maintenance.
@@ -118,6 +118,12 @@ Set up GitHub secrets for authentication. In your repository's **Settings** > **
 
 </Tab>
 </Tabs>
+</Step>
+
+<Step title="Configure version computation">
+
+Cloud generation picks SDK version numbers automatically. With self-hosting, your pipeline computes the next version itself — see [Self-hosted SDK versioning](/learn/sdks/deep-dives/self-hosted-versioning) for the two supported workflows.
+
 </Step>
 
 <Step title="Run generation locally">
