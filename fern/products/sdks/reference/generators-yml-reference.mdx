@@ -406,6 +406,19 @@ autorelease: true
   Set to `true` to enable Autorelease, `false` to disable it. [Per-generator settings](#autorelease-2) override this global configuration.
 </ParamField>
 
+## `replay`
+
+Override [Fern Replay](/learn/sdks/overview/custom-code#replay) behavior. Replay runs based on your organization's configuration; use this setting to disable it for all generators in this `generators.yml`.
+
+```yaml title="generators.yml"
+replay:
+  enabled: false
+```
+
+<ParamField path="replay.enabled" type="boolean" required={false} toc={true}>
+  Set to `false` to skip Replay for all SDK generations in this `generators.yml`, even if Replay is enabled for your organization.
+</ParamField>
+
 ## `aliases`
 
 Define shortcuts that map to multiple generator groups, allowing you to run several groups with a single command. When you run `fern generate --group <alias>`, all groups in the alias run in parallel. You can also set an alias as your `default-group`.
