@@ -19,11 +19,8 @@
 
 ## Non-429 Broken Links
 
-- [404] https://buildwithfern.com/learn/zh/docs/ai-features/writer-open-pr.png
-- [404] https://buildwithfern.com/learn/zh/docs/ai-features/writer-slack.png
-- [404] https://buildwithfern.com/learn/zh/docs/writing-content/components/runnable-endpoint.png
-- [404] https://buildwithfern.com/learn/zh/images/fern-definition-dark.svg
-- [404] https://buildwithfern.com/learn/zh/images/fern-definition-light.svg
+- [404] https://buildwithfern.com/slack
+- [404] https://buildwithfern.com/slack
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/25916576488)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/26097894091)
