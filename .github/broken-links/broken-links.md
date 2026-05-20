@@ -23,4 +23,4 @@
 - [404] https://buildwithfern.com/slack
 
 ---
-[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/26097894091)
+[View workflow run](https://github.com/Thegreatsura/fern-docs/actions/runs/26162470344)
