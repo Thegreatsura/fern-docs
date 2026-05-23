@@ -1,0 +1,87 @@
+---
+title: Quickstart
+description: Generate a working CLI binary from an OpenAPI spec in five steps.
+availability: beta
+---
+
+<Note title="Early access">
+The CLI generator is in early access. [Reach out](https://buildwithfern.com/book-demo?type=cli) to get started.
+</Note>
+
+This guide walks through generating a CLI from an OpenAPI spec and running it locally. By the end you will have a compiled binary that [maps every API endpoint to a subcommand](/learn/cli-generator/get-started/openapi-extensions#command-structure), with [authentication](/learn/cli-generator/get-started/authentication), [output formatting](/learn/cli-generator/get-started/features#output-formatting), and [pagination](/learn/cli-generator/get-started/features#pagination) wired up from your spec.
+
+## Prerequisites
+
+- [Fern CLI](https://www.npmjs.com/package/fern-api) v5.37.9 or later (`npm install -g fern-api`)
+- [Rust toolchain](https://rustup.rs/) (stable)
+- An OpenAPI 3.x spec with at least one endpoint
+
+## Setup
+
+<Steps>
+
+<Step title="Initialize a Fern project">
+
+```bash
+mkdir my-api-config && cd my-api-config
+fern init --organization my-org
+```
+
+This creates a `fern/` directory containing the default configuration files.
+</Step>
+
+<Step title="Add your OpenAPI spec">
+
+Place your spec at `fern/openapi.yml` (or any path you reference in the next step). The spec must include at least one path, and any `securitySchemes` declared under `components` become the credentials the CLI [reads at runtime](/learn/cli-generator/get-started/authentication).
+</Step>
+
+<Step title="Configure the generator">
+
+Replace the contents of `fern/generators.yml`:
+
+```yaml title="fern/generators.yml"
+api:
+  specs:
+    - openapi: openapi.yml
+default-group: cli
+groups:
+  cli:
+    generators:
+      - name: fernapi/fern-cli
+        version: 0.4.0
+        github:
+          repo: my-org/my-cli
+          mode: release
+        config:
+          binaryName: my-cli
+```
+</Step>
+
+<Step title="Generate the CLI">
+
+```bash
+fern generate --group cli
+```
+
+Fern reads the OpenAPI spec, runs the CLI generator, and writes a complete Rust project to the output path.
+</Step>
+
+<Step title="Build and run">
+
+```bash
+cd ../my-cli
+cargo build
+./target/debug/my-cli --help
+```
+
+The `--help` output shows the full command tree: top-level commands derived from OpenAPI tags, subcommands from individual operations, and built-in utilities like `completion` and `man`.
+</Step>
+
+<Step title="Customize the output">
+
+- Rename commands, hide endpoints, or patch metadata without forking your spec by layering [overrides and overlays](/learn/cli-generator/get-started/customization#overrides-and-overlays) onto `generators.yml`.
+- Ship one binary that drives multiple APIs by listing them under `api.specs` with [multi-spec merging](/learn/cli-generator/get-started/customization#multi-spec-merging).
+- Add subcommands that don't map to an endpoint — login flows, config helpers, local utilities — with [custom commands](/learn/cli-generator/get-started/customization#custom-commands).
+</Step>
+
+</Steps>
