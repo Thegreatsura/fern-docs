@@ -31,12 +31,31 @@ It includes built-in dropdown filters that appear dynamically based on your site
   </video>
 </Frame>
 
-Fern can scope search to the user's current context. For sites with multiple products or versions, set [`default-search-filters: true`](/learn/docs/configuration/site-level-settings#settingsdefault-search-filters) in your `docs.yml` to filter results to the user's current product and version (users can still remove these filters to broaden the search). For sites with [localized docs](/learn/docs/localization/overview), search is automatically scoped to the reader's active language. For [multi-source sites](/learn/docs/preview-publish/multi-source-docs), search scope across sub-paths (hierarchical vs. unified) is configured per-domain in the [Fern Dashboard](https://dashboard.buildwithfern.com).
+<Note>
+    Pages with the `nofollow` or `noindex` [frontmatter](/learn/docs/configuration/page-level-settings#indexing-properties) are excluded from the Algolia DocSearch index and won't appear in search results.
+</Note>
+
+For sites with [localized docs](/learn/docs/localization/overview), search is automatically scoped to the reader's active language. For [multi-source sites](/learn/docs/preview-publish/multi-source-docs), search scope across sub-paths (hierarchical vs. unified) is configured per-domain in the [Fern Dashboard](https://dashboard.buildwithfern.com).
 
 If you're using [Ask Fern](/learn/docs/ai-features/ask-fern/overview) (AI search), the search box also functions as your site's chat window.
 
+### Scope search by product or version
+
+For sites with multiple [products](/learn/docs/configuration/products) or [versions](/learn/docs/configuration/versions), the `settings.search` object in `docs.yml` scopes search results to the reader's current context (their active product and version). Two options are available:
+
+- [`prioritize-current-product`](/learn/docs/configuration/site-level-settings#settingssearchprioritize-current-product) — *Softer*. Boosts current-context results in ranking but still surfaces matches from other products and versions.
+- [`default-filter-by-current-product`](/learn/docs/configuration/site-level-settings#settingssearchdefault-filter-by-current-product) — *Stricter*. Hides results outside the current context by default; users can remove the filter from the search UI to broaden their search.
+
+Most sites pick one. For example, to boost current-context results without hiding anything else:
+
+```yaml docs.yml
+settings:
+  search:
+    prioritize-current-product: true
+```
+
 <Note>
-    Pages with the `nofollow` or `noindex` [frontmatter](/learn/docs/configuration/page-level-settings#indexing-properties) are excluded from the Algolia DocSearch index and won't appear in search results.
+These settings apply to keyword search only. [Ask Fern](/learn/docs/ai-features/ask-fern/overview) queries the same Algolia index and benefits from its global ranking, but doesn't receive the per-product boost from `prioritize-current-product`.
 </Note>
 
 ## How results are ranked
