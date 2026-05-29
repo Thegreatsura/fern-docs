@@ -1,17 +1,24 @@
 ---
-title: Add an announcement banner to your docs
-subtitle: Prominently highlight new features, updates, or important information
+title: Announcement banner
+description: Prominently highlight new features, updates, or important information
 ---
 
+Use an announcement banner to draw attention to new features, updates, and product launches. When configured, the announcement bar appears at the top of your docs site. After the user dismisses the bar, it will reappear the next time you update the announcement.
 
-An announcement banner is a great way to draw attention to new features and product launches. When configured, the announcement bar appears at the top of your docs site. After the user dismisses the bar, it will reappear the next time you update the announcement.
+<Frame caption="BigCommerce uses an announcement banner to welcome visitors to their [developer docs](https://docs.bigcommerce.com/developer/docs/overview/quick-start) and point them to Ask AI and search.">
+<img src="./bigcommerce-banner.png" />
+</Frame>
 
-```yaml docs.yml
+## Setup
+
+Add an `announcement` property with a `message` to your `docs.yml`:
+
+```yml docs.yml
 announcement:
     message: "🚀 New feature: Announcements are available! (<a href=\"https://buildwithfern.com/learn/docs/customization/announcement-banner\" target=\"_blank\">Learn more</a>) 🚀"
 ```
 
-Markdown and HTML is supported in the announcement message. You can include links, images, and other formatting. [Custom CSS](/docs/customization/custom-css-js#custom-css) can be used to customize the style of the announcement.
+The announcement message supports Markdown and HTML. You can include links, images, and other formatting, including [custom CSS](/docs/customization/custom-css-js#custom-css).
 
 ## Configuring announcements at multiple levels
 
