@@ -180,6 +180,10 @@ hideOnThisPage: true
     ```
     </CodeBlock>
 
+    <Note>
+      Remote generation (the default) requires authentication — the CLI prompts you to log in if needed, or you can set `FERN_TOKEN`. Self-hosted generation (`--local`) does not require login.
+    </Note>
+
     ### group
 
     Use `--group <group>` to specify which generator group to run. You can use either a group name or an alias name. Aliases are [defined in your `generators.yml`](/learn/sdks/reference/generators-yml#aliases) and map to multiple groups, allowing you to run several groups in parallel with a single command.
@@ -771,8 +775,8 @@ hideOnThisPage: true
     Use `--generator` to specify a particular generator type to upgrade.
 
     ```bash
-    fern generator upgrade --generator fernapi/fern-typescript-sdk
-    fern generator upgrade --generator fernapi/fern-python-sdk
+    fern generator upgrade --generator fern-typescript-sdk
+    fern generator upgrade --generator fern-python-sdk
     ```
 
     ### group
