@@ -4,15 +4,21 @@ description: Install the fern-docs agent skill to teach coding agents how to aut
 availability: beta
 ---
 
-The `fern-docs` [agent skill](https://www.skills.sh) teaches coding agents (Claude Code, Cursor, Codex, Copilot, and others) how to work with Fern Docs. It ships in the [`fern-api/skills`](https://github.com/fern-api/skills) repository and loads automatically when an agent's task involves docs authoring.
+The `fern-docs` [agent skill](https://www.skills.sh) teaches coding agents (Claude Code, Cursor, Codex, Copilot, and others) how to author and edit Fern Docs sites. It ships in the [`fern-api/skills`](https://github.com/fern-api/skills) repository.
 
 ## Install
+
+From your project, run:
 
 ```bash
 npx skills add fern-api/skills --skill fern-docs
 ```
 
-The [skills CLI](https://www.skills.sh) detects your agent and writes the skill to the correct location (`.claude/skills/`, `.agents/skills/`, etc.). Add `-g` to install globally instead of into the current project.
+This [`skills`](https://www.skills.sh) command detects your agent and writes the skill to the correct location (`.claude/skills/`, `.agents/skills/`, etc.). After it's installed for your project, your agent loads it automatically whenever a task involves authoring or editing your Fern Docs.
+
+<Tip>
+    Add `-g` to install globally. The skill then loads on relevant docs tasks across every project you work in.
+</Tip>
 
 ## What the skill covers
 
