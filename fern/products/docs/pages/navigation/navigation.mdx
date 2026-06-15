@@ -1,7 +1,7 @@
 ---
 title: Sections, pages, and folders
 subtitle: Organize your sidebar navigation structure in `docs.yml`
-description: Configure the sidebar navigation for your Fern documentation site, including sections, pages, folders, icons, and links.
+description: Configure the sidebar navigation for your Fern documentation site, including sections, pages, folders, URL slugs, icons, and links.
 max-toc-depth: 3
 ---
 
@@ -74,6 +74,8 @@ navigation:
 ```
 {/* <!-- vale on --> */}
 
+Sections also support [`slug` and `skip-slug`](/learn/docs/seo/configuring-slugs) to customize URL paths.
+
 ### Add a page
 
 Create an `.md` or `.mdx` file, then add a `page` entry to a section's `contents` with the file path.
@@ -114,7 +116,7 @@ navigation:
 ```
 
 For the pages in a folder, Fern automatically:
-- Converts filenames to titles and URL slugs
+- Derives titles and [URL slugs](#slugs-and-url-paths) from filenames
 - Creates nested sections from subdirectories
 - Sorts pages alphabetically
 - Uses `index.mdx` or `index.md` files as section overview pages (case-insensitive)
@@ -157,6 +159,25 @@ navigation:
   ```
 </ParamField>
 </Accordion>
+
+## Slugs and URL paths
+
+Fern builds each page's URL by combining slugs from every level of its navigation hierarchy — section, folder, tab, version, and product. Each level gets an auto-generated slug from its display name, or from the filename for [folder-based navigation](#add-a-folder). You can [rename a slug, skip a level, or override the path in a page's frontmatter](/learn/docs/seo/configuring-slugs).
+
+```yaml docs.yml
+navigation:
+  - section: Get Started        # slug renamed to "start"
+    slug: start
+    contents:
+      - section: Guides         # skipped — omitted from the URL
+        skip-slug: true
+        contents:
+          - page: Quickstart    # slug renamed to "quick"
+            slug: quick
+            path: ./pages/quickstart.mdx
+```
+
+The **Quickstart** page is hosted at `/start/quick`. The renamed section and page slugs apply, and the skipped **Guides** slug drops out of the path.
 
 ## Hiding content
 
