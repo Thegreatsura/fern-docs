@@ -1,0 +1,53 @@
+---
+title: SSE metadata access
+description: Access server-sent event metadata (event ID, event type, retry interval) in Fern-generated SDKs for stream resumption and protocol-level control.
+---
+
+When your API uses [server-sent events](/learn/api-definitions/openapi/endpoints/sse#server-sent-events), iterating the generated SDK's streaming response yields parsed data objects. To also read the SSE protocol fields — event ID, event type, and retry interval — TypeScript and Go SDKs expose metadata-aware iteration, typically used to [resume a stream](#stream-resumption) by event ID.
+
+## Metadata-aware iteration
+
+Each event exposes the parsed data alongside its protocol fields. Default iteration is unchanged, so opting in is fully backward compatible.
+
+<CodeBlocks>
+  <CodeBlock title="TypeScript">
+    ```ts
+    const stream = await client.plants.stream({ query: "fern" });
+
+    for await (const event of stream.withMetadata()) {
+      event.data   // parsed response object (same type as default iteration)
+      event.id     // SSE event ID (string | undefined)
+      event.event  // SSE event type (string | undefined)
+      event.retry  // SSE retry interval in ms (number | undefined)
+    }
+    ```
+  </CodeBlock>
+  <CodeBlock title="Go">
+    ```go
+    stream := client.Plants.Stream(ctx, &PlantRequest{Query: "fern"})
+    defer stream.Close()
+
+    for {
+      event, err := stream.RecvEvent()
+      if err != nil {
+        break
+      }
+      event.Data  // parsed response object (same type as Recv)
+      event.ID    // SSE event ID (string)
+      event.Event // SSE event type (string)
+      event.Retry // SSE retry interval in ms (int)
+    }
+
+    // Read the most recent event ID without consuming the next event:
+    lastID := stream.LastEventID()
+    ```
+  </CodeBlock>
+</CodeBlocks>
+
+<Note>
+`withMetadata()` requires TypeScript SDK generator version 3.73.0+, and `RecvEvent()` requires Go SDK generator version 1.32.0+.
+</Note>
+
+## Stream resumption
+
+The event ID is useful for resuming a stream via the standard `Last-Event-ID` header: store the last received ID as you iterate, then pass it back to the server on reconnection. This requires server-side support for the `Last-Event-ID` header.
