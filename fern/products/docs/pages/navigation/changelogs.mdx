@@ -4,7 +4,7 @@ subtitle: Keep a chronological record of project changes with tagging, search, a
 ---
 
 
-Keep a record of how your project has changed by writing changelog entries. The changelog renders as a scannable timeline of entry cards grouped by date, automatically populated from the files in your `changelog` folder. Search and tag filtering are built into the timeline, with no configuration required.
+Keep a record of how your project has changed by writing changelog entries. The changelog renders as a scannable timeline of entry cards grouped by date, automatically populated from the files in your `changelog` folder. Search and tag filtering are built into the timeline, with no configuration required. You can also [switch to the classic layout](#customize-layout) of stacked full entries.
 
 <Frame
     caption="Keep your users updated as your project evolves"
@@ -177,6 +177,40 @@ Add an `overview.mdx` file to your `changelog` folder to include a high-level ov
 
 </Step>
 </Steps>
+
+## Customize layout
+
+Changelogs support two layouts:
+
+- `timeline` (default) — a searchable timeline of condensed entry cards with plain-text excerpts.
+- `classic` — stacked full entries rendered inline, preserving code formatting, copy buttons, and links.
+
+### Site-wide setting
+
+Set the default layout for all changelogs [in `docs.yml`](/learn/docs/configuration/site-level-settings#changelog-layout):
+
+<CodeBlock title="docs.yml">
+```yaml
+layout:
+  changelog-layout: classic
+```
+</CodeBlock>
+
+### Per-changelog override
+
+Override the site-wide layout for a single changelog by adding a `layout` property to that changelog's `overview.mdx` frontmatter:
+
+<CodeBlock title="changelog/overview.mdx">
+```mdx
+---
+layout: classic
+---
+
+Release history for the self-hosted Docker image.
+```
+</CodeBlock>
+
+The per-changelog override takes priority over the site-wide `layout.changelog-layout` setting.
 
 ## Linking and sharing
 
