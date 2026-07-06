@@ -37,6 +37,10 @@ app.post("/webhooks", (req, res) => {
 
 Configure signature verification in your API definition. Settings can be applied at the **document level** (inherited by all webhooks) or **per-webhook** (overrides document-level settings).
 
+The `payload-format` field controls which components (body, timestamp, message ID, notification URL) are included in the signed data. For asymmetric verification, include a `timestamp` component so the timestamp is cryptographically authenticated and replay protection is effective.
+
+<Tabs>
+<Tab title="HMAC">
 ```yaml title="openapi.yml"
 x-fern-webhook-signature:
   type: hmac
@@ -51,5 +55,23 @@ x-fern-webhook-signature:
     format: unix-seconds
     tolerance: 300
 ```
+</Tab>
+<Tab title="Asymmetric">
+```yaml title="openapi.yml"
+x-fern-webhook-signature:
+  type: asymmetric
+  header: x-webhook-signature
+  asymmetric-algorithm: ecdsa-sha256
+  encoding: base64
+  payload-format:
+    components: [timestamp, body]
+    delimiter: "."
+  timestamp:
+    header: x-webhook-timestamp
+    format: unix-seconds
+    tolerance: 300
+```
+</Tab>
+</Tabs>
 
-For full configuration details, see [Webhook signature verification in OpenAPI](/learn/api-definitions/openapi/endpoints/webhooks#signature-verification).
+For full configuration details, see [Webhook signature verification in OpenAPI](/learn/api-definitions/openapi/endpoints/webhooks#sdk-signature-verification).
