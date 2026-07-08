@@ -116,7 +116,13 @@ components:
 </Step>
 <Step title="Filter SDKs or Docs">
 
-Specify which audiences to include in your SDKs or API Reference docs. If **no audiences** are specified, all tagged elements will be included in your SDK regardless of their audience tags.
+Specify which audiences to include in your SDKs or API Reference docs. 
+
+<Info>
+  Filtering is inclusive by default: it applies only where you set `audiences`. A group or navigation entry with no `audiences` receives the full spec, and an element with no tags is included for every audience.
+  
+  To keep internal endpoints out of partner-facing output entirely, split them into a separate API definition or exclude their paths with [`settings.filter`](/learn/api-definitions/openapi/generators-yml-reference#settingsfilter) rather than relying on tags alone.
+</Info>
 
 <Tabs>
 <Tab title="SDKs">
