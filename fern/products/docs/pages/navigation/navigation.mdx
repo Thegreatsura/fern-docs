@@ -206,7 +206,16 @@ navigation:
 
 ## Availability
 
-Set availability badges on pages, sections, or folders. Options are: `stable`, `generally-available`, `in-development`, `pre-release`, `deprecated`, or `beta`.
+Set availability badges on pages, sections, or folders to show their status in the sidebar next to the title, without hardcoding it in the title text. The value controls what renders in the sidebar:
+
+| Value | Sidebar badge |
+|-------|---------------|
+| `beta` | Yes |
+| `pre-release` | Yes |
+| `in-development` | Yes |
+| `deprecated` | Yes, and the title is struck through |
+| `stable` | No (default available state) |
+| `generally-available` | No (default available state) |
 
 Pages inherit availability from their parent section or folder unless overridden by:
 - A per-page `availability` setting in `docs.yml` (shown below)
