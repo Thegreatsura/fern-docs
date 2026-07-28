@@ -67,10 +67,24 @@ jobs:
           CF_PAGES_BRANCH: ${{ secrets.CF_PAGES_BRANCH }}
           # Optional: used only to resolve Ask AI enablement at build time.
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
+          # Vercel Edge Config connection string. Read at build time to resolve
+          # per-domain edge flags (e.g. `isWhitelabeled`, which hides the
+          # "Built with Fern" footer badge). If empty, the edge-config read
+          # returns undefined and getEdgeFlags falls back to all-false defaults,
+          # leaking the badge onto every page — see the guard in the run step.
+          EDGE_CONFIG: ${{ secrets.EDGE_CONFIG }}
           IMAGE_TAG: ${{ github.event.inputs.image_tag || 'latest' }}
         run: |
           IMAGE="fernenterprise/docs-static-build:${IMAGE_TAG}"
           echo "Running $IMAGE for $NEXT_PUBLIC_DOCS_DOMAIN"
+          # Hard guard: this workflow only ever builds one known-whitelabeled
+          # site (fern.docs.buildwithfern.com), so a missing EDGE_CONFIG means the
+          # edge flags default to false and the "Built with Fern" badge leaks —
+          # that's always wrong here. Fail the deploy rather than ship it green.
+          if [ -z "${EDGE_CONFIG:-}" ]; then
+            echo "::error title=EDGE_CONFIG missing::EDGE_CONFIG is empty — edge flags (whitelabel, etc.) would fall back to defaults and leak the 'Built with Fern' badge. Set the EDGE_CONFIG repo secret."
+            exit 1
+          fi
           docker pull "$IMAGE"
           # Forward each secret by name (values come from this step's env), so no
           # secret is interpolated into the command line.
@@ -87,4 +101,5 @@ jobs:
             -e CF_PAGES_PROJECT \
             -e CF_PAGES_BRANCH \
             -e FERN_TOKEN \
+            -e EDGE_CONFIG \
             "$IMAGE"
