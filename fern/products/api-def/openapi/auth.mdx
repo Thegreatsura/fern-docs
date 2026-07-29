@@ -175,6 +175,9 @@ api:
   specs:
     - openapi: ./openapi.yml
 ```
+
+Instead of a default scheme, set [`api.auth: endpoint-security`](/learn/sdks/reference/generators-yml#auth) to have generated SDKs honor each endpoint's own `security` requirements.
+
 <Note>
 For complete configuration options, see the [`auth-schemes` reference](/learn/sdks/reference/generators-yml#auth-schemes). You can also override authentication settings [for a specific SDK](/learn/sdks/reference/generators-yml#override-api-authentication-settings).
 </Note>
