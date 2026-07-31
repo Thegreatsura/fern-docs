@@ -20,16 +20,22 @@ navigation:
     contents:
       - page: Overview
         path: ./pages/navigation/overview.mdx
-      - page: Site-level settings
+      - page: Site settings
         path: ./pages/navigation/site-level-settings.mdx
         slug: site-level-settings
+      - page: Page settings
+        path: ./pages/navigation/frontmatter.mdx
+        slug: page-level-settings
       - section: Navigation
         skip-slug: true
         contents:
-          - page: Sections, pages, and folder
+          - page: Overview
+            path: ./pages/navigation/navigation-overview.mdx
+            slug: navigation-overview
+          - page: Sections, pages, and folders
             path: ./pages/navigation/navigation.mdx
             slug: navigation
-          - page: Tabs and tab variants
+          - page: Tabs
             path: ./pages/navigation/tabs.mdx
             slug: tabs
           - page: Versions
@@ -39,9 +45,6 @@ navigation:
           - page: Changelog pages
             path: ./pages/navigation/changelogs.mdx
             slug: changelogs
-      - page: Page-level settings
-        path: ./pages/navigation/frontmatter.mdx
-        slug: page-level-settings
   - section: Writing content
     contents:
       - page: Markdown basics
