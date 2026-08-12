@@ -69,6 +69,10 @@ The name of the generated client class. Must be PascalCase. For example, setting
 The default number of retries for failed requests in the generated SDK. Set to `0` to disable retries by default. SDK users can still override this per-request via request options.
 </ParamField>
 
+<ParamField path="encode_path_params" type="bool" default="false" required={false} toc={true}>
+Percent-encodes path parameter values when the generated SDK substitutes them into the request path. By default, values are inserted unencoded, so a value containing `/` or `..` changes the path the request resolves to: for an endpoint `GET /plants/{plantId}`, a `plantId` of `../plants` requests `/plants`. When enabled, the same value requests `/plants/..%2Fplants`.
+</ParamField>
+
 <ParamField path="enable_wire_tests" type="bool" default="false" required={false} toc={true}>
 When enabled, generates [mock server (wire) tests](/learn/sdks/deep-dives/testing#mock-server-tests) to verify that the SDK sends and receives HTTP requests as expected.
 </ParamField>
