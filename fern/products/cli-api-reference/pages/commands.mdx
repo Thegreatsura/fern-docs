@@ -194,7 +194,7 @@ hideOnThisPage: true
 
     <CodeBlock title="terminal">
     ```bash
-    fern generate [--group <group>] [--api <api>] [--version <version>] [--preview] [--fernignore <path>] [--local] [--force] [--no-replay]
+    fern generate [--group <group>] [--api <api>] [--version <version>] [--preview] [--fernignore <path>] [--local] [--force] [--no-replay] [--package] [--package-mode <mode>] [--package-only]
     ```
     </CodeBlock>
 
@@ -306,6 +306,64 @@ hideOnThisPage: true
     <Note>
     `--no-replay` works only for local generation (`--local`).
     </Note>
+
+    ### package
+
+    Use `--package` to build a distributable package artifact for every generator in the run whose [output location](/learn/sdks/reference/generators-yml#output) is `local-file-system`. Artifacts are written to a `fern-dist/` folder inside that generator's output directory, so a generated SDK can be handed to internal consumers without publishing it to a public registry. `--package` works with both cloud and local (`--local`) generation.
+
+    ```bash
+    # Package every local-file-system output
+    fern generate --package
+
+    # Package one group generated locally
+    fern generate --group plantstore-python-sdk --local --package
+    ```
+
+    | Language | Artifact |
+    |----------|----------|
+    | TypeScript | npm tarball (`.tgz`) |
+    | Python | wheel (`.whl`) |
+    | Java | JAR |
+    | C# | NuGet package (`.nupkg`) |
+    | Ruby | gem (`.gem`) |
+    | PHP | Composer archive (`.zip`) |
+    | Rust | crate (`.crate`) |
+    | Go | module source zip (`<output-dir>-source.zip`) |
+
+    <Note>
+    Not available for Swift.
+    </Note>
+
+    ### package-mode
+
+    Use `--package-mode <mode>` to choose where `--package` runs the packaging toolchains. `host` (the default) uses the toolchains installed on the machine. `docker` runs each toolchain inside its official image with the output directory mounted, so no language toolchains are required locally, and uses `docker` as the container runtime unless you pass `--runner podman`.
+
+    | Language | Host toolchain | Docker image |
+    |----------|----------------|--------------|
+    | TypeScript | `npm` | `node` |
+    | Python | `pip` | `python` |
+    | Java | `gradle` | `gradle` |
+    | C# | `dotnet` | `dotnet/sdk` |
+    | Ruby | `gem` | `ruby` |
+    | PHP | `composer` | `composer` |
+    | Rust | `cargo` | `rust` |
+
+    ```bash
+    fern generate --group plantstore-python-sdk --package --package-mode docker
+    ```
+
+    `--package-mode` requires `--package` or `--package-only`.
+
+    ### package-only
+
+    Use `--package-only` to keep only the artifact: after packaging, everything in the output directory except `fern-dist/` is deleted, so the generated SDK source isn't left behind. `--package-only` implies `--package`.
+
+    Deletion happens per generator, so a generator that produced no artifact keeps its source. `.git`, `.fernignore`, and any top-level path a `.fernignore` entry covers are always preserved.
+
+    ```bash
+    fern generate --group plantstore-node-sdk --version 0.0.1 --package-only --package-mode docker
+    # SDKs/plantstore-node-sdk/ contains only fern-dist/plantstore-0.0.1.tgz
+    ```
 
   </Accordion>
 
