@@ -127,3 +127,9 @@ config:
 
 This will load `lib/<gem>/custom_integration.rb` and `lib/<gem>/sentry_integration.rb` when the gem is required.
 </ParamField>
+
+<ParamField path="respectOptionalRequestBody" type="boolean" default="false" required={false} toc={true}>
+Lets callers omit the request body on endpoints with an optional request body. A call that omits it sends no body and no `Content-Type` header, instead of an empty JSON object (`{}`). Enable this when your API treats a missing body differently from an empty one.
+
+Only applies to request bodies declared as a single named type. Required bodies, inlined request properties, and form-urlencoded bodies are unaffected.
+</ParamField>

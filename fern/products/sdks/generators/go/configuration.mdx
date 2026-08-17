@@ -171,6 +171,12 @@ replace "github.com/your/sdk" v0.0.0 => "path/to/generated/sdk"
 Specifies the package name for the generated Go code. This determines the package declaration that will appear at the top of generated Go files and affects how users import the SDK.
 </ParamField>
 
+<ParamField path="respectOptionalRequestBody" type="boolean" default="false" required={false} toc={true}>
+Lets callers omit the request body on endpoints with an optional request body. A request wrapper with a `nil` body sends no body and no `Content-Type` header, instead of the JSON literal `null`. Enable this when your API treats a missing body differently from a `null` one.
+
+Only applies to request bodies declared as a single named type. Required bodies and inlined request properties are unaffected.
+</ParamField>
+
 <ParamField path="serverUrlVariables" type="boolean" default="true" required={false} toc={true}>
 Controls whether the generated SDK emits [server URL variable](/learn/sdks/deep-dives/server-url-templating) client options and construction-time base-URL template interpolation. Set to `false` to disable both, falling back to the base-URL behavior from before server URL templating.
 </ParamField>
