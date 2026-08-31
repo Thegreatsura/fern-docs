@@ -13,6 +13,12 @@ Fern generates API Reference documentation from a [GraphQL schema](https://graph
   />
 </Frame>
 
+## Types
+
+Fern generates a page for every named type in your schema, under a `Types` section at the root of the API Reference. Pages are grouped by kind: Objects, Inputs, Enums, Scalars, Interfaces, and Unions. Kinds your schema doesn't declare produce no group, and all GraphQL schemas in the API section share one `Types` section.
+
+Type pages live at `<api-reference>/types/<kind>/<type-name>`, such as `/api-reference/types/objects/plant`. Interface pages also list the types that implement the interface. Types that only group operations, such as a `Mutation.plants: PlantMutations` namespace type, don't get a page.
+
 ## Configuration
 
 <Steps>
