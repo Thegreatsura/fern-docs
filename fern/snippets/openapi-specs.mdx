@@ -122,6 +122,10 @@ api:
   Controls whether optional schemas are coerced to nullable types during code generation. When false, optional and nullable are treated as distinct concepts.
 </ParamField>
 
+<ParamField path="settings.any-of-sibling-properties-as-object" type="boolean" default="false" toc={true}>
+  Converts a schema whose `anyOf` branches only mark sibling `properties` as `required` (an "at least one of" constraint) into a single object with optional fields instead of an undiscriminated union, so a request body that sets several of those properties keeps all of them instead of dropping all but one. Off by default because it changes generated types. Since every property is generated as optional, the SDK doesn't enforce that at least one is set; the API rejects a request that omits all of them.
+</ParamField>
+
 <ParamField path="settings.respect-readonly-schemas" type="boolean" toc={true}>
   Enables exploring readonly schemas in OpenAPI specifications.
 </ParamField>
