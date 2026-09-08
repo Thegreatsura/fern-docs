@@ -228,3 +228,12 @@ api:
   When enabled, groups servers by host into unified environments, enabling APIs with multiple protocols (REST, WebSocket, etc.) to share environment configuration. Environment URL IDs use the server name, with path or protocol suffixes added only when needed to resolve collisions.
 
 </ParamField>
+
+<ParamField path="settings.namespaced-errors" type="boolean" default="false" toc={true}>
+  When enabled, shared error responses tagged with [`x-fern-sdk-namespace`](/learn/api-definitions/openapi/extensions/sdk-namespaces) in `components.responses` are generated as typed errors in that namespace (for example, `plants.TooManyRequestsError`) instead of being compared API-wide by status code. Applies only to the spec that sets it.
+
+  ```yaml
+  settings:
+    namespaced-errors: true
+  ```
+</ParamField>
