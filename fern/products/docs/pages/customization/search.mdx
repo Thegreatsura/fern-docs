@@ -155,7 +155,7 @@ index.search("", {
 });
 ```
 
-Values can be strings, numbers, booleans, dates, arrays, or nested objects. Keys containing `:` or `.` are dropped, because those characters delimit Algolia's filter syntax. Fern also drops subtrees nested more than five levels deep, and drops a page's block entirely if it serializes to more than 4KB (the block is duplicated onto every section record of a page). Only markdown pages carry these attributes; API Reference and changelog records don't. Custom attributes are queryable through the Algolia API only, and don't appear in Fern's built-in search filters.
+Values can be strings, numbers, booleans, dates, arrays, or nested objects; dates are indexed as ISO 8601 strings. Keys containing `:` or `.` are dropped, because those characters delimit Algolia's filter syntax. Fern also drops subtrees nested more than five levels deep, and drops a page's block entirely if it serializes to more than 4,000 bytes (the block is duplicated onto every section record of a page). Only markdown pages carry these attributes; API Reference and changelog records don't. Custom attributes are queryable through the Algolia API only, and don't appear in Fern's built-in search filters.
 
 ## Using an alternative search 
 
