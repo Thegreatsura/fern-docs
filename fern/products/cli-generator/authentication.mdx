@@ -100,6 +100,23 @@ Omitting `redirect-uri` binds an OS-assigned loopback port at login (recommended
 
 The host must be `127.0.0.1` or `localhost` over `http`, the port is required, and the path is arbitrary. Register every redirect URI the CLI can produce, including each backup port, with the authorization server.
 
+#### Hosted callback pages
+
+Once login finishes, the loopback listener renders a built-in page for the success and failure states. `success-redirect-url` and `error-redirect-url` hand that last screen off to pages you host instead:
+
+```yaml title="generators.yml"
+    success-redirect-url: https://example.com/app/oauth/cli/success
+    error-redirect-url: https://example.com/app/oauth/cli/error
+```
+
+Both take an absolute `http` or `https` URL. The success redirect forwards no query parameters, since the credential is already captured on the loopback. The error redirect appends `error` and, when the authorization server sent one, `error_description`, so the hosted page can explain the failure:
+
+```
+https://example.com/app/oauth/cli/error?error=access_denied&error_description=User+denied+the+request
+```
+
+Neither URL is the OAuth `redirect_uri`, so neither needs registering with the authorization server. Omitting both keeps the built-in pages.
+
 ### Device code
 
 ```yaml title="generators.yml"
