@@ -250,3 +250,34 @@ Control whether search engines index this page or follow its links. These are di
 Use `noindex` for pages you want visible in the sidebar but excluded from search results — for example, early-access documentation. To hide a page from both the sidebar and search results, use `hidden: true` in `docs.yml` instead, which handles both automatically — see [Hiding content](/learn/docs/customization/hiding-content) for details. Use `nofollow` sparingly — it's rarely needed for documentation.
 
 <Markdown src="/products/docs/snippets/seo-fields-indexing.mdx" />
+
+### Structured data (JSON-LD)
+
+Structured data is a machine-readable summary of a page that search engines and AI tools use to display rich results, such as breadcrumb trails under a search listing. Fern adds it to every indexable page automatically in the [JSON-LD](https://json-ld.org) format, using the [schema.org](https://schema.org) vocabulary:
+
+- An **article** entry (`TechArticle`) with the page title, description, canonical URL, language, and site name. Values come from the `title`, `headline`, `description`, and `canonical-url` fields; there is no dedicated override.
+- A **breadcrumb** entry (`BreadcrumbList`) that mirrors the page's position in your navigation. Top-level pages don't get one.
+
+Pages marked [`noindex`](#indexing) receive no structured data. Verify a published page's output with the [Schema Markup Validator](https://validator.schema.org).
+
+To replace the generated breadcrumb trail, set `jsonld:breadcrumb` in the page frontmatter to a complete `BreadcrumbList`:
+
+```yaml page.mdx
+---
+title: Authentication
+jsonld:breadcrumb:
+  "@context": https://schema.org
+  "@type": BreadcrumbList
+  itemListElement:
+    - "@type": ListItem
+      position: 1
+      name: Guides
+      item: https://docs.example.com/guides
+    - "@type": ListItem
+      position: 2
+      name: Authentication
+      item: https://docs.example.com/guides/authentication
+---
+```
+
+<Markdown src="/products/docs/snippets/seo-fields-structured-data.mdx" />
