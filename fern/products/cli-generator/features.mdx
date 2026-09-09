@@ -104,7 +104,54 @@ contoso plants create \
 
 Headers declared API-wide, through the `headers:` block of a Fern definition or [`x-fern-global-headers`](/learn/api-definitions/openapi/extensions/global-headers) in OpenAPI, are sent on every request, preserving each header's `env` fallback, `client-default`, and optionality. An [`x-fern-global-parameters`](/learn/cli-generator/get-started/openapi-extensions#global-parameters) entry targeting the same header takes precedence.
 
-Run `contoso <command> --help` to list a command's flags, or `--schema` for a machine-readable JSON contract. When a flag name differs from the spec, `--help` shows the original name as `(api: <name>)`, which is the key to use in `--params`.
+Run `contoso <command> --help` to list a command's flags, or [`--schema`](#machine-readable-schema) for the same surface as a machine-readable JSON contract. When a flag name differs from the spec, `--help` shows the original name as `(api: <name>)`, which is the key to use in `--params`.
+
+## Machine-readable schema
+
+Every generated CLI exposes a global `--schema` flag that prints its command surface as JSON. It's the agent-facing counterpart to `--help`: the output is deterministic, derived from your spec and the CLI's own flag surface, and is handled before arguments are parsed, so an operation's schema prints even when its required flags are missing.
+
+| Command | Output |
+| --- | --- |
+| `contoso --schema` | `globalFlags` plus every operation's name and description. |
+| `contoso plants --schema` | The operations in one command group. |
+| `contoso plants list --schema` | The full input and output contract for one operation. |
+
+```bash
+contoso plants list --schema
+```
+
+```json
+{
+  "operation": "plants.list",
+  "description": "List all plants",
+  "input": {
+    "type": "object",
+    "properties": {
+      "limit": {
+        "type": "integer",
+        "description": "Maximum number of plants to return.",
+        "location": "query",
+        "maximum": 100,
+        "flag": "--limit"
+      }
+    },
+    "required": []
+  },
+  "output": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    }
+  }
+}
+```
+
+`input.properties` is keyed by the spec's parameter names, and each property's `flag` gives the exact flag to pass. Properties without a `flag` are passed through `--params` or `--json`. Operations that support [`--page-all`](#pagination), return binary bodies, or stream also report `paginable`, `binaryResponse`, or `streaming`.
 
 ## Server URL variables
 
