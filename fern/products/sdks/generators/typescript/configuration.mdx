@@ -464,6 +464,31 @@ config:
 ```
 
 You can also use `packageJson.exports` to register custom subpath exports (e.g. `import { myHelper } from "@acme/sdk/helper"`). The generator only auto-generates export entries for your API definition, so custom files need to be added manually—otherwise Node.js won't resolve subpath imports for them. See [Adding custom code](/learn/sdks/generators/typescript/custom-code) for details.
+
+How nested objects are combined with the generated values is controlled by [`packageJsonMergeStrategy`](#packagejsonmergestrategy).
+</ParamField>
+
+<ParamField path="packageJsonMergeStrategy" type="'shallow' | 'deep'" default="shallow" toc={true}>
+Controls how nested objects in `packageJson` are merged into the generated `package.json`.
+
+- `shallow` (default): nested objects are replaced wholesale. For example, overriding `exports["."]` replaces the generated `import`/`require`/`default` conditions with exactly what you wrote.
+- `deep`: nested objects are merged recursively. Your keys win and are emitted first, so a custom `exports` condition is matched before the generated ones.
+
+Use `deep` to add a custom export condition without redefining the whole subpath:
+
+```yaml
+# generators.yml
+config:
+  packageJsonMergeStrategy: deep
+  packageJson:
+    exports:
+      ".":
+        "my-dev-condition":
+          types: "./dist/cjs/index.d.ts"
+          default: "./src/index.ts"
+```
+
+Neither strategy can remove a generated key.
 </ParamField>
 
 <ParamField path="package-name" type="string" default="null" required={false} toc={true}>
